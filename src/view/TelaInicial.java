@@ -15,11 +15,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class TelaInicial extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtNome;
+	private JButton btnListar;
+	private JButton btnRemover;
+	private JButton btnAlterar;
 
 	/**
 	 * Launch the application.
@@ -48,22 +51,30 @@ public class TelaInicial extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnIniciarProjeto = new JButton("Iniciar Projeto");
-		btnIniciarProjeto.addActionListener(new ActionListener() {
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Nome: " + txtNome.getText() );
+				
 			}
 		});
-		btnIniciarProjeto.setBounds(162, 184, 129, 23);
-		contentPane.add(btnIniciarProjeto);
+		btnCadastrar.setBounds(39, 123, 81, 23);
+		contentPane.add(btnCadastrar);
 		
-		JLabel lblAlunos = new JLabel("Alunos:");
-		lblAlunos.setBounds(39, 23, 46, 14);
+		JLabel lblAlunos = new JLabel("Projeto Fundamento de Banco de Dados - 2016.2");
+		lblAlunos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlunos.setBounds(39, 32, 354, 14);
 		contentPane.add(lblAlunos);
 		
-		txtNome = new JTextField();
-		txtNome.setBounds(90, 20, 86, 20);
-		contentPane.add(txtNome);
-		txtNome.setColumns(10);
+		btnListar = new JButton("Listar");
+		btnListar.setBounds(130, 123, 81, 23);
+		contentPane.add(btnListar);
+		
+		btnRemover = new JButton("Remover");
+		btnRemover.setBounds(221, 123, 81, 23);
+		contentPane.add(btnRemover);
+		
+		btnAlterar = new JButton("Alterar");
+		btnAlterar.setBounds(312, 123, 81, 23);
+		contentPane.add(btnAlterar);
 	}
 }
