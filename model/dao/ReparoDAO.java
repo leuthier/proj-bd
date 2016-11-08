@@ -5,27 +5,26 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import model.bean.Cliente;
+import model.bean.Reparo;
 import connection.ConnectionFactory;
 
 
-public class ClienteDAO {
+public class ReparoDAO {
 
-	public void create(Cliente cliente){
+	public void create(Reparo reparo){
 		
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
 		
 		try{
-			stmt = connection.prepareStatement("INSERT INTO Cliente (cpf, telefone, nomeCli, email)VALUES(?,?,?,?)");
-			stmt.setInt(1, cliente.getCpf());
-			stmt.setInt(2, cliente.getTelefone());
-			stmt.setString(3, cliente.getNomeCli());
-			stmt.setString(4, cliente.getEmail());
-			
+			stmt = connection.prepareStatement("INSERT INTO Reparo (codCelular, dataExecutada, dataUltimoConserto)VALUES(?,?,?)");
+			stmt.setInt(1, reparo.getCodCelular());
+			stmt.setDate(2, reparo.getDataExecutada());
+			stmt.setDate(3, reparo.getDataUltimoConserto());
+						
 			stmt.executeUpdate();
 			
-			JOptionPane.showMessageDialog(null, "Cliente salvo com sucesso");
+			JOptionPane.showMessageDialog(null, "Reparo cadastrado com sucesso");
 			
 		}catch (SQLException ex){
 			JOptionPane.showMessageDialog(null, "Erro ao salvar - "+ex);

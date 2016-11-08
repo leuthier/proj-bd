@@ -2,33 +2,36 @@ package model.bean;
 
 import java.sql.Date;
 
+
 public class MaterialReparo {
 	
-	private int codCelular; //not null
-	private Date dataExecutada; //not null
-	private int codMat; //Primary key
+	private int codCelular; //not null references Reparo(codCelular)
+	private Date dataExecutada; //not null references Reparo(dataExecutada)
+	private int codMat; //Primary key references Material(codMat)
 	private int quantidade;
-	//Foreign Key (codCelular, dataExecutada) references Reparo(codCelular, dataExecutada),
-	//Foreign Key (codMat) references Material(codMat)
+
 	
 	public int getCodCelular() {
 		return codCelular;
 	}
-	public void setCodCelular(int codCelular) {
-		this.codCelular = codCelular;
+	public void setCodCelular(Reparo reparo) {
+		this.codCelular = reparo.getCodCelular();
 	}
+
 	public Date getDataExecutada() {
 		return dataExecutada;
 	}
-	public void setDataExecutada(Date dataExecutada) {
-		this.dataExecutada = dataExecutada;
+	public void setDataExecutada(Reparo reparo) {
+		this.dataExecutada = reparo.getDataExecutada();
 	}
+	
 	public int getCodMat() {
 		return codMat;
 	}
-	public void setCodMat(int codMat) {
-		this.codMat = codMat;
+	public void setCodMat(Material material) {
+		this.codMat = material.getCodMat();
 	}
+	
 	public int getQuantidade() {
 		return quantidade;
 	}
@@ -36,4 +39,5 @@ public class MaterialReparo {
 		this.quantidade = quantidade;
 	}
 
+	
 }
