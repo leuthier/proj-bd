@@ -57,7 +57,7 @@ public class TelaInicial extends JFrame {
 				
 			}
 		});
-		btnCadastrar.setBounds(39, 123, 81, 23);
+		btnCadastrar.setBounds(73, 92, 299, 23);
 		contentPane.add(btnCadastrar);
 		
 		JLabel lblAlunos = new JLabel("Projeto Fundamento de Banco de Dados - 2016.2");
@@ -66,15 +66,23 @@ public class TelaInicial extends JFrame {
 		contentPane.add(lblAlunos);
 		
 		btnListar = new JButton("Listar");
-		btnListar.setBounds(130, 123, 81, 23);
+		btnListar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnListar.setBounds(73, 124, 299, 23);
 		contentPane.add(btnListar);
 		
 		btnRemover = new JButton("Remover");
-		btnRemover.setBounds(221, 123, 81, 23);
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnRemover.setBounds(73, 187, 299, 23);
 		contentPane.add(btnRemover);
 		
 		btnAlterar = new JButton("Alterar");
-		btnAlterar.setBounds(312, 123, 81, 23);
+		btnAlterar.setBounds(73, 153, 299, 23);
 		contentPane.add(btnAlterar);
 	}
 }
