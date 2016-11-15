@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import model.bean.Cliente;
 import model.bean.MaterialReparo;
 import connection.ConnectionFactory;
 

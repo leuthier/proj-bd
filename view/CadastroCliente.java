@@ -1,16 +1,19 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridBagLayout;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.JTextArea;
 import javax.swing.JLabel;
+import javax.swing.JButton;
+
+import model.bean.Cliente;
+import model.dao.ClienteDAO;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CadastroCliente extends JFrame {
 
@@ -41,7 +44,7 @@ public class CadastroCliente extends JFrame {
 	 */
 	public CadastroCliente() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 592);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -86,5 +89,45 @@ public class CadastroCliente extends JFrame {
 		JLabel lblTelaCadastroCliente = new JLabel("Tela Cadastro Cliente");
 		lblTelaCadastroCliente.setBounds(10, 11, 414, 14);
 		contentPane.add(lblTelaCadastroCliente);
+		
+		//BOTAO CADASTRAR + AÇÃO
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				Cliente cliente = new Cliente();
+				ClienteDAO clienteDAO = new ClienteDAO();
+				
+				//NECESSARIO VERIFICAR O TAMANHO DAS STRINGS!
+				//CPF E TELEFONE COMO INT, SE COMEÇAR COM 0 DÁ RUIM!
+				cliente.setNomeCli(txtNomeCli.getText());
+				cliente.setCpf(Integer.parseInt(txtCpfCliente.getText()));
+				cliente.setEmail(txtEmailCliente.getText());
+				cliente.setTelefone(Integer.parseInt(txtTelefoneCliente.getText()));
+				
+				clienteDAO.create(cliente);
+				
+			}
+		
+		});
+		btnCadastrar.setBounds(43, 174, 89, 23);
+		contentPane.add(btnCadastrar);
+		
+		//BOTAO PESQUISAR + AÇÃO
+		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnExcluir.setBounds(158, 174, 89, 23);
+		contentPane.add(btnExcluir);
+		
+		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAtualizar.setBounds(268, 174, 89, 23);
+		contentPane.add(btnAtualizar);
 	}
 }

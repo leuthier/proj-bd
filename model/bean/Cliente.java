@@ -10,8 +10,8 @@ public class Cliente {
 	public int getCpf() {
 		return cpf;
 	}
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
+	public void setCpf(int string) {
+		this.cpf = string;
 	}
 	public int getTelefone() {
 		return telefone;

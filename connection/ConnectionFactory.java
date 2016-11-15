@@ -3,8 +3,6 @@ package connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -12,7 +10,7 @@ import com.mysql.jdbc.PreparedStatement;
 public class ConnectionFactory {
 
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost:3306/Celular";
+	private static final String URL = "jdbc:mysql://localhost:3306/celular";
 	private static final String USER = "root";
 	private static final String PASS = "";
 	
