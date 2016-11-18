@@ -1,9 +1,14 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
 
 import javax.swing.JOptionPane;
+import com.sun.istack.internal.logging.Logger;
 
 import model.bean.Cliente;
 import connection.ConnectionFactory;
@@ -33,6 +38,42 @@ public class ClienteDAO {
 		}finally{
 			ConnectionFactory.closeConnection(connection, stmt);
 		}
+		
+	}
+	
+	
+	public List<Cliente> listarClientes(){
+		
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		
+		try{
+		
+			stmt = connection.prepareStatement("SELECT * FROM Cliente");
+			resultSet =stmt.executeQuery();
+		
+			while (resultSet.next()){
+				
+				Cliente cliente = new Cliente();
+				cliente.setId(resultSet.getInt("id"));
+				cliente.setCpf(resultSet.getInt("cpf"));
+				cliente.setNomeCli(resultSet.getString("nomeCli"));
+				cliente.setEmail(resultSet.getString("email"));
+				cliente.setTelefone(resultSet.getInt("telefone"));
+				
+				clientes.add(cliente);
+			 }
+			
+		}catch (SQLException ex){
+			Logger.getLogger(ClienteDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+		}finally{
+			ConnectionFactory.closeConnection(connection, stmt, resultSet);
+		}
+		
+		return clientes;
 		
 	}
 	

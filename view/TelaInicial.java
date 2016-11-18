@@ -1,24 +1,26 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.JLabel;
-import javax.swing.JProgressBar;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
+import javax.swing.JMenuBar;
+import javax.swing.JTabbedPane;
 
 public class TelaInicial extends JFrame {
 
+	/**
+	 * dava erro se nao gerasse isso 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private JButton btnListar;
 	private JButton btnRemover;
@@ -84,5 +86,7 @@ public class TelaInicial extends JFrame {
 		btnAlterar = new JButton("Alterar");
 		btnAlterar.setBounds(73, 153, 299, 23);
 		contentPane.add(btnAlterar);
+				
+		
 	}
 }

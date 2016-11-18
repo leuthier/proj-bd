@@ -56,7 +56,7 @@ public class ConnectionFactory {
 		}
 	
 	
-	public static void closeConnection(Connection connection, PreparedStatement stmt, ResultSet resultset){
+	public static void closeConnection(java.sql.Connection connection, java.sql.PreparedStatement stmt, ResultSet resultset){
 		closeConnection(connection, stmt);
 		
 		try {

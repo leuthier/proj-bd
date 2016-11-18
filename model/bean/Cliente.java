@@ -2,6 +2,7 @@ package model.bean;
 
 public class Cliente {
 	
+	private int id;
 	private int cpf; //Primary key
 	private int telefone; //varchar11
 	private String nomeCli; //varchar100
@@ -30,6 +31,12 @@ public class Cliente {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public int getId(){
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;		
 	}
 	
 	
