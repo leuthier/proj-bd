@@ -1,10 +1,17 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
 
 import javax.swing.JOptionPane;
 
+import com.sun.istack.internal.logging.Logger;
+
+import model.bean.Cliente;
 import model.bean.MaterialReparo;
 import connection.ConnectionFactory;
 
@@ -37,6 +44,39 @@ public class MaterialReparoDAO {
 		}finally{
 			ConnectionFactory.closeConnection(connection, stmt);
 		}
+		
+	}
+	
+	public List<MaterialReparo> listarMateriaisReparo(){
+		
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		
+		List<MaterialReparo> materiaisReparo = new ArrayList<MaterialReparo>();
+		
+		try{
+		
+			stmt = connection.prepareStatement("SELECT * FROM Material_Reparo");
+			resultSet =stmt.executeQuery();
+		
+			while (resultSet.next()){
+				
+				MaterialReparo materialReparo = new MaterialReparo();
+				materialReparo.setCodCelular(resultSet.getInt("codCelular"));
+				materialReparo.setCodMat(resultSet.getInt("codMat"));
+				materialReparo.setDataExecutada(resultSet.getDate("dataExecutada"));
+				materialReparo.setQuantidade(resultSet.getInt("quantidade"));
+				materiaisReparo.add(materialReparo);
+			 }
+			
+		}catch (SQLException ex){
+			Logger.getLogger(MaterialReparoDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+		}finally{
+			ConnectionFactory.closeConnection(connection, stmt, resultSet);
+		}
+		
+		return materiaisReparo;
 		
 	}
 	

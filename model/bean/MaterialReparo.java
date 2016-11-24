@@ -14,22 +14,22 @@ public class MaterialReparo {
 	public int getCodCelular() {
 		return codCelular;
 	}
-	public void setCodCelular(Reparo reparo) {
-		this.codCelular = reparo.getCodCelular();
+	public void setCodCelular(int codCelular) {
+		this.codCelular = codCelular;
 	}
 
 	public Date getDataExecutada() {
 		return dataExecutada;
 	}
-	public void setDataExecutada(Reparo reparo) {
-		this.dataExecutada = reparo.getDataExecutada();
+	public void setDataExecutada(Date dataExecutada) {
+		this.dataExecutada = dataExecutada;
 	}
 	
 	public int getCodMat() {
 		return codMat;
 	}
-	public void setCodMat(Material material) {
-		this.codMat = material.getCodMat();
+	public void setCodMat(int codMat) {
+		this.codMat = codMat;
 	}
 	
 	public int getQuantidade() {

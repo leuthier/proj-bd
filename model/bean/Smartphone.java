@@ -48,9 +48,8 @@ public class Smartphone {
 	public int getCpf() {
 		return cpfCliente;
 	}
-	public void setCpf(Cliente cliente) {
-		this.cpfCliente = cliente.getCpf();
+	public void setCpf(int cpfCliente) {
+		this.cpfCliente = cpfCliente;
 	}
-	
-	
+		
 }

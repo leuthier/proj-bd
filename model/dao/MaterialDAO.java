@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 import com.sun.istack.internal.logging.Logger;
 
-import model.bean.Cliente;
+
 import model.bean.Material;
 import connection.ConnectionFactory;
 
@@ -51,7 +51,7 @@ public class MaterialDAO {
 		
 		try{
 		
-			stmt = connection.prepareStatement("SELECT * FROM Cliente");
+			stmt = connection.prepareStatement("SELECT * FROM Material");
 			resultSet =stmt.executeQuery();
 		
 			while (resultSet.next()){
@@ -64,7 +64,7 @@ public class MaterialDAO {
 			 }
 			
 		}catch (SQLException ex){
-			Logger.getLogger(ClienteDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+			Logger.getLogger(MaterialDAO.class.getName(), null).log(Level.SEVERE, null, ex);
 		}finally{
 			ConnectionFactory.closeConnection(connection, stmt, resultSet);
 		}

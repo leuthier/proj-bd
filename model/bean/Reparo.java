@@ -20,10 +20,9 @@ public class Reparo {
 	public int getCodCelular(){
 		return codCelular;
 	}
-	public void setCodCelular(Smartphone smartphone) {
-		this.codCelular = smartphone.getCodCelular();
+	public void setCodCelular(int codCelular) {
+		this.codCelular = codCelular;
 	}
-	
 	
 	public Date getDataUltimoConserto() {
 		return dataUltimoConserto;

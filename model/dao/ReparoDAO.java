@@ -1,10 +1,17 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
 
 import javax.swing.JOptionPane;
 
+import com.sun.istack.internal.logging.Logger;
+
+import model.bean.MaterialReparo;
 import model.bean.Reparo;
 import connection.ConnectionFactory;
 
@@ -32,6 +39,38 @@ public class ReparoDAO {
 		}finally{
 			ConnectionFactory.closeConnection(connection, stmt);
 		}
+		
+	}
+	
+	public List<Reparo> listarReparos(){
+		
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		
+		List<Reparo> reparos = new ArrayList<Reparo>();
+		
+		try{
+		
+			stmt = connection.prepareStatement("SELECT * FROM Reparo");
+			resultSet =stmt.executeQuery();
+		
+			while (resultSet.next()){
+				
+				Reparo reparo = new Reparo();
+				reparo.setCodCelular(resultSet.getInt("codCelular"));
+				reparo.setDataUltimoConserto(resultSet.getDate("dataUltimoConserto"));
+				reparo.setDataExecutada(resultSet.getDate("dataExecutada"));
+				reparos.add(reparo);
+			 }
+			
+		}catch (SQLException ex){
+			Logger.getLogger(ReparoDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+		}finally{
+			ConnectionFactory.closeConnection(connection, stmt, resultSet);
+		}
+		
+		return reparos;
 		
 	}
 	

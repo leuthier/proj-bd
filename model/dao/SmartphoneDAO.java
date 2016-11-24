@@ -1,10 +1,17 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
 
 import javax.swing.JOptionPane;
 
+import com.sun.istack.internal.logging.Logger;
+
+import model.bean.Reparo;
 import model.bean.Smartphone;
 import connection.ConnectionFactory;
 
@@ -34,6 +41,41 @@ public class SmartphoneDAO {
 		}finally{
 			ConnectionFactory.closeConnection(connection, stmt);
 		}
+		
+	}
+	
+	public List<Smartphone> listarSmartphones(){
+		
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		
+		List<Smartphone> smartphones = new ArrayList<Smartphone>();
+		
+		try{
+		
+			stmt = connection.prepareStatement("SELECT * FROM Smartphone");
+			resultSet =stmt.executeQuery();
+		
+			while (resultSet.next()){
+				
+				Smartphone smartphone = new Smartphone();
+				smartphone.setCodCelular(resultSet.getInt("codCelular"));
+				smartphone.setCor(resultSet.getString("cor"));
+				smartphone.setCpf(resultSet.getInt("cpf"));
+				smartphone.setMarca(resultSet.getString("marca"));
+				smartphone.setModelo(resultSet.getString("modelo"));
+				smartphone.setNumSerie(resultSet.getInt("numSerie"));
+				smartphones.add(smartphone);
+			 }
+			
+		}catch (SQLException ex){
+			Logger.getLogger(SmartphoneDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+		}finally{
+			ConnectionFactory.closeConnection(connection, stmt, resultSet);
+		}
+		
+		return smartphones;
 		
 	}
 	
