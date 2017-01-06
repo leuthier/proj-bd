@@ -58,7 +58,6 @@ public class ClienteDAO {
 			while (resultSet.next()){
 				
 				Cliente cliente = new Cliente();
-				cliente.setId(resultSet.getInt("id"));
 				cliente.setCpf(resultSet.getInt("cpf"));
 				cliente.setNomeCli(resultSet.getString("nomeCli"));
 				cliente.setEmail(resultSet.getString("email"));
@@ -68,12 +67,38 @@ public class ClienteDAO {
 			 }
 			
 		}catch (SQLException ex){
-			Logger.getLogger(ClienteDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+			JOptionPane.showMessageDialog(null, "Erro ao listar - "+ex);
 		}finally{
 			ConnectionFactory.closeConnection(connection, stmt, resultSet);
 		}
 		
 		return clientes;
+		
+	}
+	
+	public void update(Cliente cliente){
+		
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		
+		try{
+			stmt = connection.prepareStatement("UPDATE cliente SET cpf = ?, telefone = ?, nomeCli = ?, email = ? WHERE id = ?");
+			stmt.setInt(1, cliente.getCpf());
+			stmt.setInt(2, cliente.getTelefone());
+			stmt.setString(3, cliente.getNomeCli());
+			stmt.setString(4, cliente.getEmail());
+			stmt.setInt(5, cliente.getId());
+			
+			stmt.executeUpdate();
+			
+			JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso");
+			
+		}catch (SQLException ex){
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar - "+ex);
+			
+		}finally{
+			ConnectionFactory.closeConnection(connection, stmt);
+		}
 		
 	}
 	
