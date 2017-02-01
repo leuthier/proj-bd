@@ -56,7 +56,8 @@ public class TelaInicial extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				CadastroCliente cadastroCliente = new CadastroCliente();
+				cadastroCliente.abrirCadastroCliente();
 			}
 		});
 		btnCadastrar.setBounds(73, 92, 299, 23);
@@ -88,5 +89,17 @@ public class TelaInicial extends JFrame {
 		contentPane.add(btnAlterar);
 				
 		
+	}
+	public void abrirTelaInicial() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaInicial frame = new TelaInicial();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

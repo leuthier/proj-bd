@@ -20,10 +20,7 @@ import java.util.List;
 
 public class CadastroCliente extends JFrame {
 
-	/**
-	 * dava erro se nao gerasse isso 
-	 */
-	private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
 	private JTextField txtNomeCli;
@@ -34,7 +31,7 @@ public class CadastroCliente extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void abrirCadastroCliente() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -82,7 +79,7 @@ public class CadastroCliente extends JFrame {
 		
 		txtCpfCliente = new JTextField();
 		txtCpfCliente.setText("00000000000");
-		txtCpfCliente.setToolTipText("");
+		txtCpfCliente.setToolTipText("Deve conter apenas números");
 		txtCpfCliente.setBounds(257, 54, 167, 20);
 		contentPane.add(txtCpfCliente);
 		txtCpfCliente.setColumns(10);
@@ -93,6 +90,7 @@ public class CadastroCliente extends JFrame {
 		
 		txtTelefoneCliente = new JTextField();
 		txtTelefoneCliente.setText("999999999");
+		txtTelefoneCliente.setToolTipText("Deve conter apenas números");
 		txtTelefoneCliente.setBounds(257, 104, 167, 20);
 		contentPane.add(txtTelefoneCliente);
 		txtTelefoneCliente.setColumns(10);
@@ -110,11 +108,11 @@ public class CadastroCliente extends JFrame {
 				ClienteDAO clienteDAO = new ClienteDAO();
 				
 				String strCpf = txtCpfCliente.getText();
-				
 				String strTelefone = txtTelefoneCliente.getText();
 				String nomeCliente = (txtNomeCli.getText());
 				String email = (txtEmailCliente.getText());
-				if (tamanhoOk(cliente, strCpf, strTelefone, nomeCliente, email)){
+				
+				if (tamanhoOk(strCpf, strTelefone, nomeCliente, email)){
 					int cpf = 0;
 					int telefone = 0;
 					try{
@@ -146,6 +144,7 @@ public class CadastroCliente extends JFrame {
 					cliente.setTelefone(telefone);
 					cliente.setNomeCli(nomeCliente);
 					clienteDAO.create(cliente);
+					
 				}else{
 					JOptionPane.showMessageDialog(null,"- CPF deve conter 11 digitos\n- Telefone deve conter 9 digitos\n- Nome deve conter entre 3 e 101 caracteres"
 							+ "\n- Email deve conter ate 51 caracteres","Erro",JOptionPane.ERROR_MESSAGE);
@@ -154,8 +153,18 @@ public class CadastroCliente extends JFrame {
 			}
 		
 		});
-		btnCadastrar.setBounds(173, 227, 112, 23);
+		btnCadastrar.setBounds(229, 227, 112, 23);
 		contentPane.add(btnCadastrar);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaInicial telaInicial = new TelaInicial();
+				telaInicial.abrirTelaInicial();
+			}
+		});
+		btnVoltar.setBounds(104, 227, 89, 23);
+		contentPane.add(btnVoltar);
 	}
 	
 	   private boolean isValidEmailAddress(String email){
@@ -165,7 +174,7 @@ public class CadastroCliente extends JFrame {
            return m.matches();
 	   }
 	   
-	   private boolean tamanhoOk(Cliente cliente,String strCpf, String strTelefone, String nomeCliente, String email){		   
+	   private boolean tamanhoOk(String strCpf, String strTelefone, String nomeCliente, String email){		   
 			  
 		   if ( (strCpf.length()) == 11
 				   && (strTelefone.length()) == 9 
@@ -176,5 +185,30 @@ public class CadastroCliente extends JFrame {
 				 return false;
 			}	
 	   }
-	
+	   
+	// retirado de: https://www.vivaolinux.com.br/script/Codigo-para-validar-CPF-e-CNPJ-otimizado
+	   private static final int[] pesoCPF = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
+	   private static int calcularDigito(String str, int[] peso) {
+	      int soma = 0;
+	      
+	      for (int indice=str.length()-1, digito; indice >= 0; indice-- ) {
+	         digito = Integer.parseInt(str.substring(indice,indice+1));
+	         soma += digito*peso[peso.length-str.length()+indice];
+	      }
+	      
+	      soma = 11 - soma % 11;
+	      return soma > 9 ? 0 : soma;
+	      
+	   }
+
+	   
+	   public static boolean isValidCPF(String cpf) {
+		   
+	      if ((cpf==null) || (cpf.length()!=11)) return false;
+
+	      Integer digito1 = calcularDigito(cpf.substring(0,9), pesoCPF);
+	      Integer digito2 = calcularDigito(cpf.substring(0,9) + digito1, pesoCPF);
+	      return cpf.equals(cpf.substring(0,9) + digito1.toString() + digito2.toString());
+	  
+	   }
 }
