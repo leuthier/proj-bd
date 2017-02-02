@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 
 import com.sun.istack.internal.logging.Logger;
 
-
 import model.bean.Material;
 import connection.ConnectionFactory;
 
@@ -73,4 +72,27 @@ public class MaterialDAO {
 		
 	}
 	
+	
+	public void update(Material material){
+		
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		
+		try{
+			stmt = connection.prepareStatement("UPDATE Material SET codMat = ?, descricao = ? WHERE id = ?");
+			stmt.setInt(1, material.getCodMat());
+			stmt.setString(2, material.getDescricao());
+			
+			stmt.executeUpdate();
+			
+			JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso");
+			
+		}catch (SQLException ex){
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar - "+ex);
+			
+		}finally{
+			ConnectionFactory.closeConnection(connection, stmt);
+		}
+		
+	}
 }

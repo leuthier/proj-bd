@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
+//import java.util.logging.Level;
 
 import javax.swing.JOptionPane;
-import com.sun.istack.internal.logging.Logger;
+//import com.sun.istack.internal.logging.Logger;
 
 import model.bean.Cliente;
 import connection.ConnectionFactory;
@@ -23,8 +23,8 @@ public class ClienteDAO {
 		
 		try{
 			stmt = connection.prepareStatement("INSERT INTO Cliente (cpf, telefone, nomeCli, email)VALUES(?,?,?,?)");
-			stmt.setInt(1, cliente.getCpf());
-			stmt.setInt(2, cliente.getTelefone());
+			stmt.setLong(1, cliente.getCpf());
+			stmt.setString(2, cliente.getTelefone());
 			stmt.setString(3, cliente.getNomeCli());
 			stmt.setString(4, cliente.getEmail());
 			
@@ -58,10 +58,10 @@ public class ClienteDAO {
 			while (resultSet.next()){
 				
 				Cliente cliente = new Cliente();
-				cliente.setCpf(resultSet.getInt("cpf"));
+				cliente.setCpf(resultSet.getLong("cpf"));
 				cliente.setNomeCli(resultSet.getString("nomeCli"));
 				cliente.setEmail(resultSet.getString("email"));
-				cliente.setTelefone(resultSet.getInt("telefone"));
+				cliente.setTelefone(resultSet.getString("telefone"));
 				
 				clientes.add(cliente);
 			 }
@@ -83,8 +83,8 @@ public class ClienteDAO {
 		
 		try{
 			stmt = connection.prepareStatement("UPDATE cliente SET cpf = ?, telefone = ?, nomeCli = ?, email = ? WHERE id = ?");
-			stmt.setInt(1, cliente.getCpf());
-			stmt.setInt(2, cliente.getTelefone());
+			stmt.setLong(1, cliente.getCpf());
+			stmt.setString(2, cliente.getTelefone());
 			stmt.setString(3, cliente.getNomeCli());
 			stmt.setString(4, cliente.getEmail());
 			stmt.setInt(5, cliente.getId());

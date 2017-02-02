@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 
 import com.sun.istack.internal.logging.Logger;
 
-import model.bean.Reparo;
 import model.bean.Smartphone;
 import connection.ConnectionFactory;
 
@@ -61,11 +60,12 @@ public class SmartphoneDAO {
 				
 				Smartphone smartphone = new Smartphone();
 				smartphone.setCodCelular(resultSet.getInt("codCelular"));
+				smartphone.setNumSerie(resultSet.getInt("numSerie"));
+				smartphone.setModelo(resultSet.getString("modelo"));
+				smartphone.setMarca(resultSet.getString("marca"));
 				smartphone.setCor(resultSet.getString("cor"));
 				smartphone.setCpf(resultSet.getInt("cpf"));
-				smartphone.setMarca(resultSet.getString("marca"));
-				smartphone.setModelo(resultSet.getString("modelo"));
-				smartphone.setNumSerie(resultSet.getInt("numSerie"));
+				
 				smartphones.add(smartphone);
 			 }
 			
@@ -79,4 +79,31 @@ public class SmartphoneDAO {
 		
 	}
 	
+	
+public void update(Smartphone smartphone){
+		
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		
+		try{
+			stmt = connection.prepareStatement("UPDATE Smartphone SET codCelular = ?, numSerie = ?, modelo = ?, marca = ?, cor = ?, cpf=?  WHERE id = ?");
+			stmt.setInt(1, smartphone.getCodCelular());
+			stmt.setInt(2, smartphone.getNumSerie());
+			stmt.setString(3, smartphone.getModelo());
+			stmt.setString(4, smartphone.getMarca());
+			stmt.setString(5, smartphone.getCor());
+			stmt.setInt(6, smartphone.getCpf());
+									
+			stmt.executeUpdate();
+			
+			JOptionPane.showMessageDialog(null, "Smartphone atualizado com sucesso");
+			
+		}catch (SQLException ex){
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar - "+ex);
+			
+		}finally{
+			ConnectionFactory.closeConnection(connection, stmt);
+		}
+		
+	}
 }

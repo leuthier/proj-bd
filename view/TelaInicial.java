@@ -118,30 +118,7 @@ public class TelaInicial extends JFrame {
 			}
 		});
 		
-	}
-	
-//	private void formFrameClosing(javax.swing.event.InternalFrameEvent evt) { 
-//		this.fechar(null); 
-//	} 
-	
-//	jFrame.addWindowListener(new java.awt.event.WindowAdapter() {
-//		public void windowClosing(java.awt.event.WindowEvent e) {
-//			if (e.getID() == WindowEvent.WINDOW_CLOSING){
-//				int selectedOption = JOptionPane.showConfirmDialog(null,"Deseja Sair Realmente?", "Sistema informa:", JOptionPane.YES_NO_OPTION);
-//if(selectedOption == JOptionPane.YES_OPTION){
-//	  	                	
-//}	
-//			}	
-//		}
-	
-//	private void fechar(java.awt.event.WindowEvent e){
-//		if (e.getID() == WindowEvent.WINDOW_CLOSING){
-//			if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","ATENÇÃO ",javax.swing.JOptionPane.YES_NO_OPTION )==0){
-//				System.exit(0);
-//			}
-//		}
-//	}
-	
+	}	
 	
 	
 }

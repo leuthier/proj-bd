@@ -3,21 +3,21 @@ package model.bean;
 public class Cliente {
 	
 	private int id;
-	private int cpf; //Primary key
-	private int telefone; //varchar11
+	private Long cpf; //Primary key
+	private String telefone; //varchar11
 	private String nomeCli; //varchar100
 	private String email; //varchar50
 	
-	public int getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
-	public void setCpf(int string) {
-		this.cpf = string;
+	public void setCpf(Long cpf) {
+		this.cpf = cpf;
 	}
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 	public String getNomeCli() {

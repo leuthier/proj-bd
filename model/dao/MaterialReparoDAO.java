@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 
 import com.sun.istack.internal.logging.Logger;
 
-import model.bean.Cliente;
 import model.bean.MaterialReparo;
 import connection.ConnectionFactory;
 
@@ -79,5 +78,32 @@ public class MaterialReparoDAO {
 		return materiaisReparo;
 		
 	}
+	
+	
+	public void update(MaterialReparo materialReparo){
+		
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		
+		try{
+			stmt = connection.prepareStatement("UPDATE Material SET codCelular = ?, dataExecutada = ?, codMat = ?, quantidade = ? WHERE id = ?");
+			stmt.setInt(1, materialReparo.getCodCelular());
+			stmt.setDate(2, materialReparo.getDataExecutada());
+			stmt.setInt(3, materialReparo.getCodMat());
+			stmt.setInt(4, materialReparo.getQuantidade());
+			
+			stmt.executeUpdate();
+			
+			JOptionPane.showMessageDialog(null, "Material de reparo foi atualizado com sucesso");
+			
+		}catch (SQLException ex){
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar - "+ex);
+			
+		}finally{
+			ConnectionFactory.closeConnection(connection, stmt);
+		}
+		
+	}
+	
 	
 }
