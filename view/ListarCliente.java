@@ -1,10 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -17,16 +17,36 @@ import model.dao.ClienteDAO;
  */
 public class ListarCliente extends javax.swing.JFrame {
 
+	
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	
     /**
      * Creates new form NewJFrame
      */
     public ListarCliente() {
+ 	
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         jTable1.setRowSorter(new TableRowSorter(modelo));
         
         readJTable();
+        
+        
     }
+    
+    public void abrirListaClientes() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ListarCliente frame = new ListarCliente();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
     
     public void readJTable(){
     	DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
@@ -59,7 +79,7 @@ public class ListarCliente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(ListarCliente.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Clientes");
 
@@ -120,6 +140,8 @@ public class ListarCliente extends javax.swing.JFrame {
         );
 
         pack();
+        
+        
     }// </editor-fold>                        
 
     /**

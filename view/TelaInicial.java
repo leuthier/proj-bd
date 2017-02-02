@@ -3,22 +3,21 @@ package view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.JRadioButton;
-import javax.swing.JMenuBar;
-import javax.swing.JTabbedPane;
 
 public class TelaInicial extends JFrame {
 
-	/**
-	 * dava erro se nao gerasse isso 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
@@ -29,6 +28,7 @@ public class TelaInicial extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+		
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,7 +46,8 @@ public class TelaInicial extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicial() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -71,6 +72,8 @@ public class TelaInicial extends JFrame {
 		btnListar = new JButton("Listar");
 		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ListarCliente listarCliente = new ListarCliente();
+				listarCliente.abrirListaClientes();
 			}
 		});
 		btnListar.setBounds(73, 124, 299, 23);
@@ -88,7 +91,20 @@ public class TelaInicial extends JFrame {
 		btnAlterar.setBounds(73, 153, 299, 23);
 		contentPane.add(btnAlterar);
 				
-		
+		addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e) {
+				Object[] options = { "Sim", "Não" };
+				int i = JOptionPane.showOptionDialog(null,
+						"Tem certeza que deseja sair?", "Saída",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+						options, options[0]);
+				if (i == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				} else {
+					repaint();
+				}
+			}
+		});
 	}
 	public void abrirTelaInicial() {
 		EventQueue.invokeLater(new Runnable() {
@@ -101,5 +117,31 @@ public class TelaInicial extends JFrame {
 				}
 			}
 		});
+		
 	}
+	
+//	private void formFrameClosing(javax.swing.event.InternalFrameEvent evt) { 
+//		this.fechar(null); 
+//	} 
+	
+//	jFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+//		public void windowClosing(java.awt.event.WindowEvent e) {
+//			if (e.getID() == WindowEvent.WINDOW_CLOSING){
+//				int selectedOption = JOptionPane.showConfirmDialog(null,"Deseja Sair Realmente?", "Sistema informa:", JOptionPane.YES_NO_OPTION);
+//if(selectedOption == JOptionPane.YES_OPTION){
+//	  	                	
+//}	
+//			}	
+//		}
+	
+//	private void fechar(java.awt.event.WindowEvent e){
+//		if (e.getID() == WindowEvent.WINDOW_CLOSING){
+//			if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","ATENÇÃO ",javax.swing.JOptionPane.YES_NO_OPTION )==0){
+//				System.exit(0);
+//			}
+//		}
+//	}
+	
+	
+	
 }

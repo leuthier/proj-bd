@@ -15,12 +15,11 @@ import model.dao.ClienteDAO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class CadastroCliente extends JFrame {
 
-		private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
 	private JTextField txtNomeCli;
@@ -31,7 +30,7 @@ public class CadastroCliente extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void abrirCadastroCliente() {
+	public void abrirCadastroCliente() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -48,7 +47,7 @@ public class CadastroCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public CadastroCliente() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
