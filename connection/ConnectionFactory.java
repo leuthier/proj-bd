@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
 
 public class ConnectionFactory {
 
@@ -15,16 +14,16 @@ public class ConnectionFactory {
 	private static final String PASS = "";
 	
 	public static Connection getConnection (){
-		//Connection --> tutorial
 			
 			try {
 				Class.forName(DRIVER);
-				//return DriverManager.getConnection(URL, USER, PASS); --> tutorial
-				return (Connection) DriverManager.getConnection(URL, USER, PASS); //--> meu jeito
+				
+				return (Connection) DriverManager.getConnection(URL, USER, PASS); 
 						
 			} catch (ClassNotFoundException | SQLException ex) {
 				throw new RuntimeException("Erro na conexão: ",ex);
 			}
+			
 	}
 	
 	
@@ -41,10 +40,10 @@ public class ConnectionFactory {
 	}
 	
 	
-	//verificar se o PreparedStatement é do jdbc ou do java
+	
 	public static void closeConnection(java.sql.Connection connection, java.sql.PreparedStatement stmt){
-			closeConnection((Connection) connection);
 			
+		closeConnection((Connection) connection);
 			try {
 				if (stmt != null){
 					stmt.close();

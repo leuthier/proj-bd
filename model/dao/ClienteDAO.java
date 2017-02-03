@@ -23,7 +23,7 @@ public class ClienteDAO {
 		
 		try{
 			stmt = connection.prepareStatement("INSERT INTO Cliente (cpf, telefone, nomeCli, email)VALUES(?,?,?,?)");
-			stmt.setLong(1, cliente.getCpf());
+			stmt.setString(1, cliente.getCpf());
 			stmt.setString(2, cliente.getTelefone());
 			stmt.setString(3, cliente.getNomeCli());
 			stmt.setString(4, cliente.getEmail());
@@ -58,7 +58,7 @@ public class ClienteDAO {
 			while (resultSet.next()){
 				
 				Cliente cliente = new Cliente();
-				cliente.setCpf(resultSet.getLong("cpf"));
+				cliente.setCpf(resultSet.getString("cpf"));
 				cliente.setNomeCli(resultSet.getString("nomeCli"));
 				cliente.setEmail(resultSet.getString("email"));
 				cliente.setTelefone(resultSet.getString("telefone"));
@@ -83,7 +83,7 @@ public class ClienteDAO {
 		
 		try{
 			stmt = connection.prepareStatement("UPDATE cliente SET cpf = ?, telefone = ?, nomeCli = ?, email = ? WHERE id = ?");
-			stmt.setLong(1, cliente.getCpf());
+			stmt.setString(1, cliente.getCpf());
 			stmt.setString(2, cliente.getTelefone());
 			stmt.setString(3, cliente.getNomeCli());
 			stmt.setString(4, cliente.getEmail());

@@ -3,16 +3,16 @@ package model.bean;
 public class Cliente {
 	
 	private int id;
-	private Long cpf; //Primary key
+	private String cpf; //Primary key
 	private String telefone; //varchar11
 	private String nomeCli; //varchar100
 	private String email; //varchar50
 	
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
+	public void setCpf(String strCpf) {
+		this.cpf = strCpf;
 	}
 	public String getTelefone() {
 		return telefone;

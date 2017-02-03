@@ -112,15 +112,18 @@ public class CadastroCliente extends JFrame {
 				String email = (txtEmailCliente.getText());
 				
 				if (tamanhoOk(telefone, nomeCliente, email)){
-					Long cpf;
-					try{
-						cpf = Long.parseLong(strCpf);
-						//cpf = Long.valueOf(strCpf).longValue();
-					}catch(NumberFormatException ex){
-						JOptionPane.showMessageDialog(null,"CPF Invalido","Erro",JOptionPane.ERROR_MESSAGE);
+					
+					if(strCpf.matches("^[0-9]*$")){
+						if (((isValidCpf(strCpf)) != true)){
+							JOptionPane.showMessageDialog(null,"CPF Invalido","Erro",JOptionPane.ERROR_MESSAGE);
+							return;
+						}else{
+							cliente.setCpf(strCpf);
+							}
+					}else{
+						JOptionPane.showMessageDialog(null,"CPF Invalido - Deve conter apenas números","Erro",JOptionPane.ERROR_MESSAGE);
 						return;
 					}
-					
 					
 					if ((isValidEmailAddress(email)) != true ){
 						JOptionPane.showMessageDialog(null,"Email Invalido","Erro",JOptionPane.ERROR_MESSAGE);
@@ -128,16 +131,20 @@ public class CadastroCliente extends JFrame {
 					}else{
 						cliente.setEmail(email);
 					}
-					
+				
 					if ((Character.isLetter(nomeCliente.charAt(0))) != true ){
 						JOptionPane.showMessageDialog(null,"Nome Invalido","Erro",JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					
-					cliente.setCpf(cpf);
 					cliente.setTelefone(telefone);
 					cliente.setNomeCli(nomeCliente);
 					clienteDAO.create(cliente);
+				
+					txtCpfCliente.setText(null);
+					txtTelefoneCliente.setText(null);
+					txtNomeCli.setText(null);
+					txtEmailCliente.setText(null);
 					
 				}else{
 					JOptionPane.showMessageDialog(null,"- CPF deve conter 11 digitos\n- Telefone deve conter 11 digitos\n- Nome deve conter entre 3 e 101 caracteres"
@@ -161,12 +168,14 @@ public class CadastroCliente extends JFrame {
 		contentPane.add(btnVoltar);
 	}
 	
+	
 	   private boolean isValidEmailAddress(String email){
            String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
            java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
            java.util.regex.Matcher m = p.matcher(email);
            return m.matches();
 	   }
+	   
 	   
 	   private boolean tamanhoOk(String telefone, String nomeCliente, String email){		   
 			  
@@ -179,7 +188,8 @@ public class CadastroCliente extends JFrame {
 			}	
 	   }
 	   
-	// retirado de: https://www.vivaolinux.com.br/script/Codigo-para-validar-CPF-e-CNPJ-otimizado
+	   
+
 	   private static final int[] pesoCPF = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
 	   private static int calcularDigito(String str, int[] peso) {
 	      int soma = 0;
@@ -195,9 +205,14 @@ public class CadastroCliente extends JFrame {
 	   }
 
 	   
-	   public static boolean isValidCPF(String cpf) {
+	   public static boolean isValidCpf(String cpf) {
 		   
-	      if ((cpf==null) || (cpf.length()!=11)){
+	      if ( (cpf==null) || (cpf.length()!=11) ||
+	    		  cpf.equals("00000000000") || cpf.equals("11111111111") ||
+	    		  cpf.equals("22222222222") || cpf.equals("33333333333") ||
+	    	      cpf.equals("44444444444") || cpf.equals("55555555555") ||
+	    	      cpf.equals("66666666666") || cpf.equals("77777777777") ||
+	    	      cpf.equals("88888888888") || cpf.equals("99999999999") ) {
 	    	  return false;
 	      }
 
