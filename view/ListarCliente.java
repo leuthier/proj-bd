@@ -53,7 +53,7 @@ public class ListarCliente extends javax.swing.JFrame {
     	
     	ClienteDAO clientedao = new ClienteDAO();
     	
-    	for(Cliente c: clientedao.listarClientes()){
+    	for(Cliente c: clientedao.listar()){
     		modelo.addRow(new Object[]{
        				c.getCpf(),
     				c.getNomeCli(),

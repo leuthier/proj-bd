@@ -139,7 +139,7 @@ public class CadastroCliente extends JFrame {
 					
 					cliente.setTelefone(telefone);
 					cliente.setNomeCli(nomeCliente);
-					clienteDAO.create(cliente);
+					clienteDAO.criar(cliente);
 				
 					txtCpfCliente.setText(null);
 					txtTelefoneCliente.setText(null);

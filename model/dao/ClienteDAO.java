@@ -16,7 +16,7 @@ import connection.ConnectionFactory;
 
 public class ClienteDAO {
 
-	public void create(Cliente cliente){
+	public void criar(Cliente cliente){
 		
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
@@ -42,7 +42,7 @@ public class ClienteDAO {
 	}
 	
 	
-	public List<Cliente> listarClientes(){
+	public List<Cliente> listar(){
 		
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
@@ -76,18 +76,18 @@ public class ClienteDAO {
 		
 	}
 	
-	public void update(Cliente cliente){
+	public void atualizar(Cliente cliente){
 		
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
 		
 		try{
-			stmt = connection.prepareStatement("UPDATE cliente SET cpf = ?, telefone = ?, nomeCli = ?, email = ? WHERE id = ?");
+			stmt = connection.prepareStatement("UPDATE cliente SET cpf = ?, telefone = ?, nomeCli = ?, email = ? WHERE cpf = ?");
 			stmt.setString(1, cliente.getCpf());
 			stmt.setString(2, cliente.getTelefone());
 			stmt.setString(3, cliente.getNomeCli());
 			stmt.setString(4, cliente.getEmail());
-			stmt.setInt(5, cliente.getId());
+			stmt.setString(5, cliente.getCpf());
 			
 			stmt.executeUpdate();
 			
@@ -95,6 +95,28 @@ public class ClienteDAO {
 			
 		}catch (SQLException ex){
 			JOptionPane.showMessageDialog(null, "Erro ao atualizar - "+ex);
+			
+		}finally{
+			ConnectionFactory.closeConnection(connection, stmt);
+		}
+		
+	}
+	
+public void excluir(Cliente cliente){
+		
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		
+		try{
+			stmt = connection.prepareStatement("DELETE FROM cliente WHERE cpf = ?");
+			stmt.setString(1, cliente.getCpf());
+						
+			stmt.executeUpdate();
+			
+			JOptionPane.showMessageDialog(null, "Cliente deletado com sucesso");
+			
+		}catch (SQLException ex){
+			JOptionPane.showMessageDialog(null, "Erro ao excluir - "+ex);
 			
 		}finally{
 			ConnectionFactory.closeConnection(connection, stmt);
