@@ -21,7 +21,7 @@ public class TelaInicial extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
-	private JButton btnListar;
+	private JButton btnSmartphone;
 	private JButton btnRemover;
 	private JButton btnAlterar;
 
@@ -54,30 +54,30 @@ public class TelaInicial extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
+		JButton btnClientes = new JButton("Clientes");
+		btnClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CadastroCliente cadastroCliente = new CadastroCliente();
-				cadastroCliente.abrirCadastroCliente();
+				TelaCliente telaCliente = new TelaCliente();
+				telaCliente.abrirTelaCliente();
 			}
 		});
-		btnCadastrar.setBounds(73, 92, 299, 23);
-		contentPane.add(btnCadastrar);
+		btnClientes.setBounds(73, 92, 299, 23);
+		contentPane.add(btnClientes);
 		
 		JLabel lblAlunos = new JLabel("Projeto Fundamento de Banco de Dados - 2016.2");
 		lblAlunos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlunos.setBounds(39, 32, 354, 14);
 		contentPane.add(lblAlunos);
 		
-		btnListar = new JButton("Listar");
-		btnListar.addActionListener(new ActionListener() {
+		btnSmartphone = new JButton("Smartphone");
+		btnSmartphone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListarCliente listarCliente = new ListarCliente();
 				listarCliente.abrirListaClientes();
 			}
 		});
-		btnListar.setBounds(73, 124, 299, 23);
-		contentPane.add(btnListar);
+		btnSmartphone.setBounds(73, 124, 299, 23);
+		contentPane.add(btnSmartphone);
 		
 		btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(new ActionListener() {

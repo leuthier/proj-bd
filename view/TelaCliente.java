@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.EventQueue;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -343,7 +345,7 @@ public class TelaCliente extends javax.swing.JFrame {
 			readJTable();
 
     	}else{
-    		JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+    		JOptionPane.showMessageDialog(null, "Selecione um cliente para excluir.");
     	}
     }                                        
 
@@ -476,4 +478,17 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration                   
+    
+    public void abrirTelaCliente() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaCliente frame = new TelaCliente();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 }
