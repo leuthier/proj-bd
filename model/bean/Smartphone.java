@@ -2,25 +2,25 @@ package model.bean;
 
 public class Smartphone {
 
-	private int codCelular; //Primary Key
-	private int numSerie; //int
+	private String codCelular; //Primary Key
+	private String numSerie; //varchar 5
 	private String modelo; //varchar20
 	private String marca; //tamanho10
 	private String cor; //varchar10
-	private int cpfCliente;
+	private String cpfCliente;
 	//Foreign Key (cpf) references Cliente(cpf)
 	
-	public int getCodCelular() {
+	public String getCodCelular() {
 		return codCelular;
 	}
-	public void setCodCelular(int codCelular) {
+	public void setCodCelular(String codCelular) {
 		this.codCelular = codCelular;
 	}
 	
-	public int getNumSerie() {
+	public String getNumSerie() {
 		return numSerie;
 	}
-	public void setNumSerie(int numSerie) {
+	public void setNumSerie(String numSerie) {
 		this.numSerie = numSerie;
 	}
 	
@@ -45,10 +45,10 @@ public class Smartphone {
 		this.cor = cor;
 	}
 	
-	public int getCpf() {
+	public String getCpf() {
 		return cpfCliente;
 	}
-	public void setCpf(int cpfCliente) {
+	public void setCpf(String cpfCliente) {
 		this.cpfCliente = cpfCliente;
 	}
 		

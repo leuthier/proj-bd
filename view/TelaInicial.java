@@ -72,14 +72,14 @@ public class TelaInicial extends JFrame {
 		btnSmartphone = new JButton("Smartphone");
 		btnSmartphone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListarCliente listarCliente = new ListarCliente();
-				listarCliente.abrirListaClientes();
+				TelaSmartphone telaSmartphone = new TelaSmartphone();
+				telaSmartphone.abrirTelaSmartphone();
 			}
 		});
 		btnSmartphone.setBounds(73, 124, 299, 23);
 		contentPane.add(btnSmartphone);
 		
-		btnRemover = new JButton("Remover");
+		btnRemover = new JButton("Reparo");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -87,7 +87,7 @@ public class TelaInicial extends JFrame {
 		btnRemover.setBounds(73, 187, 299, 23);
 		contentPane.add(btnRemover);
 		
-		btnAlterar = new JButton("Alterar");
+		btnAlterar = new JButton("Material");
 		btnAlterar.setBounds(73, 153, 299, 23);
 		contentPane.add(btnAlterar);
 				

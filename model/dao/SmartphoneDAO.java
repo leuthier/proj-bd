@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
-
 import javax.swing.JOptionPane;
 
 import com.sun.istack.internal.logging.Logger;
@@ -17,18 +16,19 @@ import connection.ConnectionFactory;
 
 public class SmartphoneDAO {
 
-	public void create(Smartphone smartphone){
+	public void criar(Smartphone smartphone){
 		
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
 		
 		try{
-			stmt = connection.prepareStatement("INSERT INTO Smartphone (codCelular, numSerie, marca, cor, cpf)VALUES(?,?,?,?,?)");
-			stmt.setInt(1, smartphone.getCodCelular());
-			stmt.setInt(2, smartphone.getNumSerie());
-			stmt.setString(3, smartphone.getModelo());
-			stmt.setString(4, smartphone.getMarca());
-			stmt.setInt(5, smartphone.getCpf());
+			stmt = connection.prepareStatement("INSERT INTO smartphone (codCelular, numSerie, marca, cor, modelo, cpf)VALUES(?,?,?,?,?,?)");
+			stmt.setString(1, smartphone.getCodCelular());
+			stmt.setString(2, smartphone.getNumSerie());
+			stmt.setString(3, smartphone.getMarca());
+			stmt.setString(4, smartphone.getModelo());
+			stmt.setString(5, smartphone.getCor());
+			stmt.setString(6, smartphone.getCpf());
 			
 			stmt.executeUpdate();
 			
@@ -43,7 +43,7 @@ public class SmartphoneDAO {
 		
 	}
 	
-	public List<Smartphone> listarSmartphones(){
+	public List<Smartphone> listar(){
 		
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
@@ -53,18 +53,18 @@ public class SmartphoneDAO {
 		
 		try{
 		
-			stmt = connection.prepareStatement("SELECT * FROM Smartphone");
+			stmt = connection.prepareStatement("SELECT * FROM smartphone");
 			resultSet =stmt.executeQuery();
 		
 			while (resultSet.next()){
 				
 				Smartphone smartphone = new Smartphone();
-				smartphone.setCodCelular(resultSet.getInt("codCelular"));
-				smartphone.setNumSerie(resultSet.getInt("numSerie"));
-				smartphone.setModelo(resultSet.getString("modelo"));
+				smartphone.setCodCelular(resultSet.getString("codCelular"));
+				smartphone.setNumSerie(resultSet.getString("numSerie"));
 				smartphone.setMarca(resultSet.getString("marca"));
+				smartphone.setModelo(resultSet.getString("modelo"));
 				smartphone.setCor(resultSet.getString("cor"));
-				smartphone.setCpf(resultSet.getInt("cpf"));
+				smartphone.setCpf(resultSet.getString("cpf"));
 				
 				smartphones.add(smartphone);
 			 }
@@ -80,30 +80,55 @@ public class SmartphoneDAO {
 	}
 	
 	
-public void update(Smartphone smartphone){
+	public void atualizar(Smartphone smartphone){
+			
+			Connection connection = ConnectionFactory.getConnection();
+			java.sql.PreparedStatement stmt = null;
+			
+			try{
+				stmt = connection.prepareStatement("UPDATE smartphone SET codCelular = ?, numSerie = ?, modelo = ?, marca = ?, cor = ?, cpf=?  WHERE id = ?");
+				stmt.setString(1, smartphone.getCodCelular());
+				stmt.setString(2, smartphone.getNumSerie());
+				stmt.setString(3, smartphone.getModelo());
+				stmt.setString(4, smartphone.getMarca());
+				stmt.setString(5, smartphone.getCor());
+				stmt.setString(6, smartphone.getCpf());
+										
+				stmt.executeUpdate();
+				
+				JOptionPane.showMessageDialog(null, "Smartphone atualizado com sucesso");
+				
+			}catch (SQLException ex){
+				JOptionPane.showMessageDialog(null, "Erro ao atualizar - "+ex);
+				
+			}finally{
+				ConnectionFactory.closeConnection(connection, stmt);
+			}
+			
+	}
+
+
+	public void excluir(Smartphone smartphone){
 		
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
 		
 		try{
-			stmt = connection.prepareStatement("UPDATE Smartphone SET codCelular = ?, numSerie = ?, modelo = ?, marca = ?, cor = ?, cpf=?  WHERE id = ?");
-			stmt.setInt(1, smartphone.getCodCelular());
-			stmt.setInt(2, smartphone.getNumSerie());
-			stmt.setString(3, smartphone.getModelo());
-			stmt.setString(4, smartphone.getMarca());
-			stmt.setString(5, smartphone.getCor());
-			stmt.setInt(6, smartphone.getCpf());
-									
+			stmt = connection.prepareStatement("DELETE FROM smartphone WHERE codCelular = ?");
+			stmt.setString(1, smartphone.getCodCelular());
+						
 			stmt.executeUpdate();
 			
-			JOptionPane.showMessageDialog(null, "Smartphone atualizado com sucesso");
+			JOptionPane.showMessageDialog(null, "Smartphone deletado com sucesso");
 			
 		}catch (SQLException ex){
-			JOptionPane.showMessageDialog(null, "Erro ao atualizar - "+ex);
+			JOptionPane.showMessageDialog(null, "Erro ao excluir - "+ex);
 			
 		}finally{
 			ConnectionFactory.closeConnection(connection, stmt);
 		}
 		
 	}
+
+
 }

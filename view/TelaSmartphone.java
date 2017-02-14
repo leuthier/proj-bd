@@ -10,14 +10,14 @@ import java.awt.EventQueue;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import model.bean.Cliente;
-import model.dao.ClienteDAO;
+import model.bean.Smartphone;
+import model.dao.SmartphoneDAO;
 
 /**
  *
- * @author Bernardojr
+ * @author VictorLeuthier
  */
-public class TelaCliente extends javax.swing.JFrame {
+public class TelaSmartphone extends javax.swing.JFrame {
 
     /**
 	 * 
@@ -26,7 +26,7 @@ public class TelaCliente extends javax.swing.JFrame {
 	/**
      * Creates new form TelaCadastro
      */
-    public TelaCliente() {
+    public TelaSmartphone() {
       	initComponents();
         readJTable();
     }
@@ -42,10 +42,10 @@ public class TelaCliente extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtCpf = new javax.swing.JTextField();
-        txtNome = new javax.swing.JTextField();
-        txtTelefone = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
+        txtCodigoCelular = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
+        txtNumeroSerie = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -58,26 +58,26 @@ public class TelaCliente extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Clientes");
+        setTitle("Smartphones");
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Clientes");
+        jLabel1.setText("Smartphones");
 
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+        txtNumeroSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("CPF");
+        jLabel2.setText("Codigo Celular");
 
-        jLabel3.setText("Nome");
+        jLabel3.setText("Numero de serie");
 
-        jLabel4.setText("Telefone");
+        jLabel4.setText("Modelo");
 
-        jLabel5.setText("Email");
+        jLabel5.setText("Marca");
 
         jButton1.setText("Salvar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -112,22 +112,22 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodigoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(0, 182, Short.MAX_VALUE))
-                            .addComponent(txtEmail)))
+                            .addComponent(txtNumeroSerie)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -148,10 +148,10 @@ public class TelaCliente extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -168,7 +168,7 @@ public class TelaCliente extends javax.swing.JFrame {
             new Object [][] {
             },
             new String [] {
-                "CPF", "Nome", "Telefone", "Email"
+                "Numero de serie", "Modelo", "Marca", "Cor", "CPF Cliente"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,121 +211,90 @@ public class TelaCliente extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	if(jTable1.getSelectedRow() != -1){
-    		Cliente cliente = new Cliente();
-        	ClienteDAO clienteDao = new ClienteDAO();
+    		Smartphone smartphone = new Smartphone();
+        	SmartphoneDAO smartphoneDao = new SmartphoneDAO();
         	
-        	String strCpf = txtCpf.getText();
-    		String telefone = txtTelefone.getText();
-    		String nomeCliente = (txtNome.getText());
-    		String email = (txtEmail.getText());
+        	String codigoCelular = txtCodigoCelular.getText();
+        	String numSerie = (txtNumeroSerie.getText());
+        	String modelo = (txtModelo.getText());
+    		String marca = (txtMarca.getText());
+    		String cor = (txtCor.getText());
+    		String cpf = (txtCpf.getText());
         	
-        	if (tamanhoOk(telefone, nomeCliente, email)){
+        	//if (tamanhoOk(marca, nomeCliente, email)){
     			
-    			if(strCpf.matches("^[0-9]*$")){
-    				if (((isValidCpf(strCpf)) != true)){
-    					JOptionPane.showMessageDialog(null,"CPF Invalido","Erro",JOptionPane.ERROR_MESSAGE);
-    					return;
-    				}else{
-    					cliente.setCpf(strCpf);
-    					}
-    			}else{
-    				JOptionPane.showMessageDialog(null,"CPF Invalido - Deve conter apenas números","Erro",JOptionPane.ERROR_MESSAGE);
-    				return;
-    			}
     			
-    			if ((isValidEmailAddress(email)) != true ){
-    				JOptionPane.showMessageDialog(null,"Email Invalido","Erro",JOptionPane.ERROR_MESSAGE);
-    				return;
-    			}else{
-    				cliente.setEmail(email);
-    			}
+    			smartphone.setCodCelular(codigoCelular);
+    			smartphone.setNumSerie(numSerie);
+    			smartphone.setModelo(modelo);
+    			smartphone.setMarca(marca);
+    			smartphone.setCor(cor);
+    			smartphone.setCpf(cpf);
+    			
+    			smartphoneDao.criar(smartphone);
     		
-    			if ((Character.isLetter(nomeCliente.charAt(0))) != true ){
-    				JOptionPane.showMessageDialog(null,"Nome Invalido","Erro",JOptionPane.ERROR_MESSAGE);
-    				return;
-    			}
-    			
-    			cliente.setTelefone(telefone);
-    			cliente.setNomeCli(nomeCliente);
-    			clienteDao.atualizar(cliente);
-    		
+    			txtCodigoCelular.setText(null);
+        		txtNumeroSerie.setText(null);
+        		txtModelo.setText(null);
+        		txtMarca.setText(null);			
+    			txtCor.setText(null);
     			txtCpf.setText(null);
-    			txtTelefone.setText(null);
-    			txtNome.setText(null);
-    			txtEmail.setText(null);
     			
-    		}else{
-    			JOptionPane.showMessageDialog(null,"- CPF deve conter 11 digitos\n- Telefone deve conter 11 digitos\n- Nome deve conter entre 3 e 101 caracteres"
-    					+ "\n- Email deve conter ate 51 caracteres","Erro",JOptionPane.ERROR_MESSAGE);
-    			return;
-    		}
+//    		}else{
+//    			JOptionPane.showMessageDialog(null,"- CPF deve conter 11 digitos\n- Telefone deve conter 11 digitos\n- Nome deve conter entre 3 e 101 caracteres"
+//    					+ "\n- Email deve conter ate 51 caracteres","Erro",JOptionPane.ERROR_MESSAGE);
+//    			return;
+//    		}
         	readJTable();
     	}
     }
     
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {                                        	
     	if(jTable1.getSelectedRow() != -1){
-    		txtCpf.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-    		txtNome.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
-    		txtTelefone.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-    		txtEmail.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+    		txtCodigoCelular.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+    		txtModelo.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+    		txtMarca.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+    		txtNumeroSerie.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
 
     	}
     }       
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    	Cliente cliente = new Cliente();
-    	ClienteDAO clienteDao = new ClienteDAO();
+    	Smartphone smartphone = new Smartphone();
+    	SmartphoneDAO smartphoneDao = new SmartphoneDAO();
     	
-    	String strCpf = txtCpf.getText();
-		String telefone = txtTelefone.getText();
-		String nomeCliente = (txtNome.getText());
-		String email = (txtEmail.getText());
     	
-    	if (tamanhoOk(telefone, nomeCliente, email)){
+    	String codigoCelular = (txtCodigoCelular.getText());
+    	String numSerie = (txtNumeroSerie.getText());
+    	String modelo = (txtModelo.getText());
+		String marca = (txtMarca.getText());
+		String cor = (txtCor.getText());
+		String cpf = (txtCpf.getText());
+    	
+    	//if (tamanhoOk(marca, nomeCliente, email)){
 			
-			if(strCpf.matches("^[0-9]*$")){
-				if (((isValidCpf(strCpf)) != true)){
-					JOptionPane.showMessageDialog(null,"CPF Invalido","Erro",JOptionPane.ERROR_MESSAGE);
-					return;
-				}else{
-					cliente.setCpf(strCpf);
-					}
-			}else{
-				JOptionPane.showMessageDialog(null,"CPF Invalido - Deve conter apenas números","Erro",JOptionPane.ERROR_MESSAGE);
-				return;
-			}
 			
-			if ((isValidEmailAddress(email)) != true ){
-				JOptionPane.showMessageDialog(null,"Email Invalido","Erro",JOptionPane.ERROR_MESSAGE);
-				return;
-			}
+			smartphone.setCodCelular(codigoCelular);
+			smartphone.setNumSerie(numSerie);
+			smartphone.setModelo(modelo);
+			smartphone.setMarca(marca);
+			smartphone.setCor(cor);
+			smartphone.setCpf(cpf);
+			
+			smartphoneDao.criar(smartphone);
 		
-			if ((Character.isLetter(nomeCliente.charAt(0))) != true ){
-				JOptionPane.showMessageDialog(null,"Nome Invalido","Erro",JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-			
-			if(!(telefone.matches("^[0-9]*$"))){
-				JOptionPane.showMessageDialog(null,"Telefone invalido","Erro",JOptionPane.ERROR_MESSAGE);
-				return;					
-			}	
-			
-			cliente.setTelefone(telefone);
-			cliente.setNomeCli(nomeCliente);
-			cliente.setEmail(email);
-			clienteDao.criar(cliente);
-		
+			txtCodigoCelular.setText(null);
+    		txtNumeroSerie.setText(null);
+    		txtModelo.setText(null);
+    		txtMarca.setText(null);			
+			txtCor.setText(null);
 			txtCpf.setText(null);
-			txtTelefone.setText(null);
-			txtNome.setText(null);
-			txtEmail.setText(null);
 			
-		}else{
-			JOptionPane.showMessageDialog(null,"- CPF deve conter 11 digitos\n- Telefone deve conter 11 digitos\n- Nome deve conter entre 3 e 101 caracteres"
-					+ "\n- Email deve conter ate 51 caracteres","Erro",JOptionPane.ERROR_MESSAGE);
-			return;
-		}
+//		}else{
+//			JOptionPane.showMessageDialog(null,"- Numero de serie deve conter 11 digitos\n- A marca deve ter +3 dígitos\n- CPF deve "
+//					+ "\n- Modelo deve conter ate 30 caracteres","Erro",JOptionPane.ERROR_MESSAGE);
+//			return;
+//		}
     	readJTable();
     	
     	
@@ -333,16 +302,18 @@ public class TelaCliente extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	if(jTable1.getSelectedRow() != -1){
-    		Cliente cliente = new Cliente();
-    		ClienteDAO clienteDao = new ClienteDAO();
+    		Smartphone smartphone = new Smartphone();
+    		SmartphoneDAO smartphoneDao = new SmartphoneDAO();
     		
-    		cliente.setCpf(txtCpf.getText());
-    		clienteDao.excluir(cliente);
+    		smartphone.setCodCelular(txtCodigoCelular.getText());
+    		smartphoneDao.excluir(smartphone);    		
     		
-    		txtCpf.setText(null);
-			txtTelefone.setText(null);
-			txtNome.setText(null);
-			txtEmail.setText(null);
+    		txtCodigoCelular.setText(null);
+    		txtNumeroSerie.setText(null);
+    		txtModelo.setText(null);
+    		txtMarca.setText(null);			
+			txtCor.setText(null);
+			txtCpf.setText(null);
 			
 			readJTable();
 
@@ -370,13 +341,13 @@ public class TelaCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -384,24 +355,19 @@ public class TelaCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCliente().setVisible(true);
+                new TelaSmartphone().setVisible(true);
             }
         });
     }
-    
-    private boolean isValidEmailAddress(String email){
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
-	   }
+    	   
 	   
-	   
-	   private boolean tamanhoOk(String telefone, String nomeCliente, String email){		   
+	   private boolean tamanhoOk(String numSerie, String modelo, String marca, String cor, String cpfCliente){		   
 			  
-		   if (    (telefone.length()) == 11  || (telefone.length()) == 8 
-				   && ( (nomeCliente.length()) < 101 && (nomeCliente.length()) > 3 )
-				   && ( (email.length()) < 51) ){
+		   if (    (numSerie.length()) == 11 
+				   && ( (modelo.length())  < 30 )
+				   && ( (marca.length())   >= 3 )
+				   && ( (cor.length())     < 30 ) 
+				   && ( (cpfCliente.length() == 11 ))  ) {
 			   			return true;	
 			}else{
 				 return false;
@@ -409,50 +375,20 @@ public class TelaCliente extends javax.swing.JFrame {
 	   }
 	   
 	   
-
-	   private static final int[] pesoCPF = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
-	   private static int calcularDigito(String str, int[] peso) {
-	      int soma = 0;
-	      
-	      for (int indice=str.length()-1, digito; indice >= 0; indice-- ) {
-	         digito = Integer.parseInt(str.substring(indice,indice+1));
-	         soma += digito*peso[peso.length-str.length()+indice];
-	      }
-	      
-	      soma = 11 - soma % 11;
-	      return soma > 9 ? 0 : soma;
-	      
-	   }
-
-	   
-	   public static boolean isValidCpf(String cpf) {
-		   
-	      if ( (cpf==null) || (cpf.length()!=11) ||
-	    		  cpf.equals("00000000000") || cpf.equals("11111111111") ||
-	    		  cpf.equals("22222222222") || cpf.equals("33333333333") ||
-	    	      cpf.equals("44444444444") || cpf.equals("55555555555") ||
-	    	      cpf.equals("66666666666") || cpf.equals("77777777777") ||
-	    	      cpf.equals("88888888888") || cpf.equals("99999999999") ) {
-	    	  return false;
-	      }
-
-	      Integer digito1 = calcularDigito(cpf.substring(0,9), pesoCPF);
-	      Integer digito2 = calcularDigito(cpf.substring(0,9) + digito1, pesoCPF);
-	      return cpf.equals(cpf.substring(0,9) + digito1.toString() + digito2.toString());
-	  
-	   }
-	   
 	   public void readJTable(){
 	    	DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
 	    	modelo.setRowCount(0);
-	    	ClienteDAO clientedao = new ClienteDAO();
+	    	SmartphoneDAO smartphoneDao = new SmartphoneDAO();
 	    	
-	    	for(Cliente c: clientedao.listar()){
+	    	for(Smartphone s: smartphoneDao.listar()){
 	    		modelo.addRow(new Object[]{
-	       				c.getCpf(),
-	    				c.getNomeCli(),
-	    				c.getTelefone(),
-	    				c.getEmail()
+	       				s.getCodCelular(),
+	    				s.getNumSerie(),
+	    				s.getMarca(),
+	    				s.getModelo(),
+	    				s.getCor(),
+	    				s.getCpf()
+	    				
 	    		});
 	    		
 	    	}
@@ -475,17 +411,19 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField txtCodigoCelular;
+    private javax.swing.JTextField txtNumeroSerie;
+    private javax.swing.JTextField txtModelo;
+    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtCor;
     private javax.swing.JTextField txtCpf;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtTelefone;
     // End of variables declaration                   
     
-    public void abrirTelaCliente() {
+    public void abrirTelaSmartphone() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCliente frame = new TelaCliente();
+					TelaSmartphone frame = new TelaSmartphone();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
