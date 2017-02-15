@@ -86,11 +86,11 @@ public class SmartphoneDAO {
 			java.sql.PreparedStatement stmt = null;
 			
 			try{
-				stmt = connection.prepareStatement("UPDATE smartphone SET codCelular = ?, numSerie = ?, modelo = ?, marca = ?, cor = ?, cpf=?  WHERE id = ?");
+				stmt = connection.prepareStatement("UPDATE smartphone SET codCelular = ?, numSerie = ?, marca = ?, modelo = ?, cor = ?, cpf=?  WHERE id = ?");
 				stmt.setString(1, smartphone.getCodCelular());
 				stmt.setString(2, smartphone.getNumSerie());
-				stmt.setString(3, smartphone.getModelo());
-				stmt.setString(4, smartphone.getMarca());
+				stmt.setString(3, smartphone.getMarca());
+				stmt.setString(4, smartphone.getModelo());
 				stmt.setString(5, smartphone.getCor());
 				stmt.setString(6, smartphone.getCpf());
 										

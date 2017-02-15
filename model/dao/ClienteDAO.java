@@ -123,5 +123,37 @@ public void excluir(Cliente cliente){
 		}
 		
 	}
+
+public Cliente pesquisarPorCpf(String cpf){
+	Connection connection = ConnectionFactory.getConnection();
+	java.sql.PreparedStatement stmt = null;
+	ResultSet resultSet = null;
+	String consulta = "SELECT * FROM celular.cliente WHERE cliente.cpf = ";
+	String consultaCompleta = consulta.concat(cpf);
+	try{	
+		stmt = connection.prepareStatement(consultaCompleta);
+		resultSet = stmt.executeQuery();
+		
+		
+		while (resultSet.next()){
+			
+			Cliente cliente = new Cliente();
+			cliente.setCpf(resultSet.getString("cpf"));
+			cliente.setNomeCli(resultSet.getString("nomeCli"));
+			cliente.setEmail(resultSet.getString("email"));
+			cliente.setTelefone(resultSet.getString("telefone"));
+			
+			return cliente;
+			
+		 }
+		
+	}catch (SQLException ex){
+		JOptionPane.showMessageDialog(null, "Erro ao buscar cliente por CPF - "+ ex);
+	}
+	finally{
+		ConnectionFactory.closeConnection(connection, stmt, resultSet);
+	}
+	return null;
+}
 	
 }

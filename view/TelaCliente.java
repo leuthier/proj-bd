@@ -94,9 +94,6 @@ public class TelaCliente extends javax.swing.JFrame {
         });
 
         jButton3.setText("Atualizar");
-        jButton3.setMaximumSize(new java.awt.Dimension(63, 23));
-        jButton3.setMinimumSize(new java.awt.Dimension(63, 23));
-        jButton3.setPreferredSize(new java.awt.Dimension(63, 23));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);

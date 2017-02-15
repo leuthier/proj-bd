@@ -10,8 +10,16 @@ import java.awt.EventQueue;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import model.bean.Cliente;
 import model.bean.Smartphone;
+import model.dao.ClienteDAO;
 import model.dao.SmartphoneDAO;
+
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -41,18 +49,24 @@ public class TelaSmartphone extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTituloSmartphone = new javax.swing.JLabel();
         txtCodigoCelular = new javax.swing.JTextField();
-        txtModelo = new javax.swing.JTextField();
-        txtMarca = new javax.swing.JTextField();
         txtNumeroSerie = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        txtMarca = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
+        txtCorCadastro = new javax.swing.JTextField();
+        txtCpfCadastro = new javax.swing.JTextField();
+        
+        lblCodigoCelular = new javax.swing.JLabel();
+        lblNumeroSerie = new javax.swing.JLabel();
+        lblModelo = new javax.swing.JLabel();
+        lblMarca = new javax.swing.JLabel();
+        lblCor = new javax.swing.JLabel();
+        lblCpfCliente = new javax.swing.JLabel();
+        
+        btnSalvar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -63,102 +77,125 @@ public class TelaSmartphone extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Smartphones");
+        lblTituloSmartphone.setText("Smartphones");
 
-        txtNumeroSerie.addActionListener(new java.awt.event.ActionListener() {
+       /* txtNumeroSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
             }
-        });
+        });*/
 
-        jLabel2.setText("Codigo Celular");
+        lblCodigoCelular.setText("Codigo Celular");
 
-        jLabel3.setText("Numero de serie");
+        lblNumeroSerie.setText("Numero de serie");
 
-        jLabel4.setText("Modelo");
+        lblModelo.setText("Modelo");
 
-        jLabel5.setText("Marca");
+        lblMarca.setText("Marca");
+        
+        lblCor.setText("Cor");
+        
+        lblCpfCliente.setText("Cpf cliente");
 
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Excluir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Atualizar");
-        jButton3.setMaximumSize(new java.awt.Dimension(63, 23));
-        jButton3.setMinimumSize(new java.awt.Dimension(63, 23));
-        jButton3.setPreferredSize(new java.awt.Dimension(63, 23));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        
+        JLabel lblCorCadastro = new JLabel("Cor");
+        
+        JLabel lblCpfCadastro = new JLabel("CPF Cliente");
+        
+//        txtCorCadastro = new JTextField();
+//        txtCorCadastro.setColumns(10);
+//        
+//        txtCpfCadastro = new JTextField();
+//        txtCpfCadastro.setColumns(10);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCodigoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(0, 182, Short.MAX_VALUE))
-                            .addComponent(txtNumeroSerie)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+        	jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(jPanel1Layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING, false)
+        				.addGroup(jPanel1Layout.createSequentialGroup()
+        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(lblCodigoCelular)
+        						.addComponent(txtCodigoCelular, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+        					.addGap(28)
+        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(lblNumeroSerie)
+        						.addComponent(txtNumeroSerie, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)))
+        				.addComponent(btnSalvar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        			.addGap(20)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(jPanel1Layout.createSequentialGroup()
+        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(btnExcluir, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        						.addGroup(jPanel1Layout.createSequentialGroup()
+        							.addComponent(txtModelo, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+        							.addGap(33)
+        							.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING, false)
+        								.addGroup(jPanel1Layout.createSequentialGroup()
+        									.addComponent(lblMarca)
+        									.addGap(121))
+        								.addComponent(txtCorCadastro))))
+        					.addGap(39))
+        				.addComponent(lblModelo))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(lblCorCadastro)
+        				.addComponent(txtMarca, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(btnAtualizar, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(lblCpfCadastro)
+        				.addComponent(txtCpfCadastro, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE))
+        			.addGap(1191))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumeroSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+        	jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(jPanel1Layout.createSequentialGroup()
+        			.addGap(38)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblCodigoCelular)
+        				.addComponent(lblNumeroSerie)
+        				.addComponent(lblModelo)
+        				.addComponent(lblMarca)
+        				.addComponent(lblCorCadastro)
+        				.addComponent(lblCpfCadastro))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(txtCodigoCelular, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(txtNumeroSerie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(txtModelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(txtCorCadastro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(txtMarca, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(txtCpfCadastro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(18)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(btnSalvar)
+        				.addComponent(btnExcluir)
+        				.addComponent(btnAtualizar))
+        			.addContainerGap(29, Short.MAX_VALUE))
         );
+        jPanel1.setLayout(jPanel1Layout);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -168,7 +205,7 @@ public class TelaSmartphone extends javax.swing.JFrame {
             new Object [][] {
             },
             new String [] {
-                "Numero de serie", "Modelo", "Marca", "Cor", "CPF Cliente"
+                "Codigo celular", "Numero de serie", "Modelo", "Marca", "Cor", "CPF Cliente"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -204,10 +241,7 @@ public class TelaSmartphone extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    }                                        
+    }// </editor-fold>                                                        
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	if(jTable1.getSelectedRow() != -1){
@@ -216,10 +250,10 @@ public class TelaSmartphone extends javax.swing.JFrame {
         	
         	String codigoCelular = txtCodigoCelular.getText();
         	String numSerie = (txtNumeroSerie.getText());
-        	String modelo = (txtModelo.getText());
-    		String marca = (txtMarca.getText());
-    		String cor = (txtCor.getText());
-    		String cpf = (txtCpf.getText());
+        	String modelo = (txtMarca.getText());
+    		String marca = (txtModelo.getText());
+    		String cor = (txtCorCadastro.getText());
+    		String cpf = (txtCpfCadastro.getText());
         	
         	//if (tamanhoOk(marca, nomeCliente, email)){
     			
@@ -231,14 +265,14 @@ public class TelaSmartphone extends javax.swing.JFrame {
     			smartphone.setCor(cor);
     			smartphone.setCpf(cpf);
     			
-    			smartphoneDao.criar(smartphone);
+    			smartphoneDao.atualizar(smartphone);
     		
     			txtCodigoCelular.setText(null);
         		txtNumeroSerie.setText(null);
-        		txtModelo.setText(null);
-        		txtMarca.setText(null);			
-    			txtCor.setText(null);
-    			txtCpf.setText(null);
+        		txtMarca.setText(null);
+        		txtModelo.setText(null);			
+    			txtCorCadastro.setText(null);
+    			txtCpfCadastro.setText(null);
     			
 //    		}else{
 //    			JOptionPane.showMessageDialog(null,"- CPF deve conter 11 digitos\n- Telefone deve conter 11 digitos\n- Nome deve conter entre 3 e 101 caracteres"
@@ -252,9 +286,11 @@ public class TelaSmartphone extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {                                        	
     	if(jTable1.getSelectedRow() != -1){
     		txtCodigoCelular.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-    		txtModelo.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+    		txtNumeroSerie.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
     		txtMarca.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-    		txtNumeroSerie.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+    		txtModelo.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+    		txtCorCadastro.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
+    		txtCpfCadastro.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString());
 
     	}
     }       
@@ -266,32 +302,51 @@ public class TelaSmartphone extends javax.swing.JFrame {
     	
     	String codigoCelular = (txtCodigoCelular.getText());
     	String numSerie = (txtNumeroSerie.getText());
-    	String modelo = (txtModelo.getText());
-		String marca = (txtMarca.getText());
-		String cor = (txtCor.getText());
-		String cpf = (txtCpf.getText());
+    	String modelo = (txtMarca.getText());
+		String marca = (txtModelo.getText());
+		String cor = (txtCorCadastro.getText());
+		String cpf = (txtCpfCadastro.getText());
     	
-    	//if (tamanhoOk(marca, nomeCliente, email)){
+    	//if (tamanhoOk(codigoCelular, numSerie, modelo, marca, cor, cpf)){
+    		
+    		if (  (codigoCelular.matches("^[0-9]*$")) && (numSerie.matches("^[0-9]*$"))  ){
 			
-			
-			smartphone.setCodCelular(codigoCelular);
-			smartphone.setNumSerie(numSerie);
+				smartphone.setCodCelular(codigoCelular);
+				smartphone.setNumSerie(numSerie);
+			}else{
+				JOptionPane.showMessageDialog(null,"Codigo do celular ou numero de serie invalidos","Erro",JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+    	
 			smartphone.setModelo(modelo);
 			smartphone.setMarca(marca);
 			smartphone.setCor(cor);
-			smartphone.setCpf(cpf);
 			
+			//if (existeCpf(cpf)){
+				
+				if (buscarClientePorCpf(cpf) != null){
+					smartphone.setCpf(cpf);
+				}else{
+					JOptionPane.showMessageDialog(null,"CPF nao encontrado","Erro",JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+//			}else{
+//				JOptionPane.showMessageDialog(null,"CPF invalido ou inexistente","Erro",JOptionPane.ERROR_MESSAGE);
+//				return;
+//			}
+						
 			smartphoneDao.criar(smartphone);
 		
 			txtCodigoCelular.setText(null);
     		txtNumeroSerie.setText(null);
-    		txtModelo.setText(null);
-    		txtMarca.setText(null);			
-			txtCor.setText(null);
-			txtCpf.setText(null);
+    		txtMarca.setText(null);
+    		txtModelo.setText(null);			
+			txtCorCadastro.setText(null);
+			txtCpfCadastro.setText(null);
 			
 //		}else{
-//			JOptionPane.showMessageDialog(null,"- Numero de serie deve conter 11 digitos\n- A marca deve ter +3 dígitos\n- CPF deve "
+//			JOptionPane.showMessageDialog(null,"- O codigo celular deve conter 5 digitos\n- Numero de serie deve conter 11 digitos\n- A marca deve ter pelo menos 3 digitos\n- CPF deve conter 11 caracteres"
 //					+ "\n- Modelo deve conter ate 30 caracteres","Erro",JOptionPane.ERROR_MESSAGE);
 //			return;
 //		}
@@ -310,10 +365,10 @@ public class TelaSmartphone extends javax.swing.JFrame {
     		
     		txtCodigoCelular.setText(null);
     		txtNumeroSerie.setText(null);
-    		txtModelo.setText(null);
-    		txtMarca.setText(null);			
-			txtCor.setText(null);
-			txtCpf.setText(null);
+    		txtMarca.setText(null);
+    		txtModelo.setText(null);			
+			txtCorCadastro.setText(null);
+			txtCpfCadastro.setText(null);
 			
 			readJTable();
 
@@ -360,18 +415,36 @@ public class TelaSmartphone extends javax.swing.JFrame {
         });
     }
     	   
+    
 	   
-	   private boolean tamanhoOk(String numSerie, String modelo, String marca, String cor, String cpfCliente){		   
-			  
-		   if (    (numSerie.length()) == 11 
-				   && ( (modelo.length())  < 30 )
-				   && ( (marca.length())   >= 3 )
-				   && ( (cor.length())     < 30 ) 
-				   && ( (cpfCliente.length() == 11 ))  ) {
-			   			return true;	
-			}else{
-				 return false;
-			}	
+//	   private boolean tamanhoOk(String codCelular, String numSerie, String modelo, String marca, String cor, String cpfCliente){		   
+//			  
+//		   if (       ( (codCelular.length()) == 5)
+//				   && ( (numSerie.length()) == 11) 
+//				   && ( (modelo.length())  < 30 )
+//				   && ( (marca.length())   >= 3 )
+//				   && ( (cor.length())     < 30 ) 
+//				   && ( (cpfCliente.length()) == 11 ) ){
+//			   			return true;	
+//			}else{
+//				 return false;
+//			}	
+//	   }
+	   
+//	   private boolean existeCpf(String cpfCliente){
+//		  if( TelaCliente.isValidCpf(cpfCliente)){
+//			  return true;
+//		  }
+//		  return false;
+//	   }
+//	   
+	   private Cliente buscarClientePorCpf(String cpf){
+		   //if (existeCpf(cpf)){
+			   
+			   ClienteDAO clienteDao = new ClienteDAO();
+			   return clienteDao.pesquisarPorCpf(cpf);
+		       			
+		   //}return null;
 	   }
 	   
 	   
@@ -399,24 +472,26 @@ public class TelaSmartphone extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnAtualizar;
+    private javax.swing.JLabel lblTituloSmartphone;
+    private javax.swing.JLabel lblCodigoCelular;
+    private javax.swing.JLabel lblNumeroSerie;
+    private javax.swing.JLabel lblModelo;
+    private javax.swing.JLabel lblMarca;
+    private javax.swing.JLabel lblCor;
+    private javax.swing.JLabel lblCpfCliente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtCodigoCelular;
     private javax.swing.JTextField txtNumeroSerie;
-    private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtMarca;
-    private javax.swing.JTextField txtCor;
-    private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtModelo;
+    private javax.swing.JTextField txtCorCadastro;
+    private javax.swing.JTextField txtCpfCadastro;
     // End of variables declaration                   
     
     public void abrirTelaSmartphone() {
