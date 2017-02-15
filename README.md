@@ -6,7 +6,7 @@
 #### Requisitos
 ###### Driver JDBC: [mysql-connector-java-5.1.40.zip] (http://cdn.mysql.com//Downloads/Connector-J/mysql-connector-java-5.1.40.zip)
 ###### Interface Gráfica: [WindowBuilder] (https://eclipse.org/windowbuilder/)
-###### Schema SQL: [Schema Celular] (https://drive.google.com/open?id=0Bw_EHUVXd5q5ZV9RTWx4VkpqOXc)
+###### Schema SQL: [Schema Celular] (https://drive.google.com/open?id=0Bw_EHUVXd5q5TGVSMFNtUkFTZVk)
 
 Para a utilização do sistema é necessário haver uma conexão com o SGBD MySQL, seja através do XAMPP ou não.<br>
 Crie o schema utilizando o script SQL acima e, se necessário mude as configurações da classe Connection.
