@@ -11,20 +11,21 @@ import javax.swing.JOptionPane;
 
 import com.sun.istack.internal.logging.Logger;
 
+import model.bean.Cliente;
 import model.bean.Material;
 import connection.ConnectionFactory;
 
 
 public class MaterialDAO {
 
-	public void create(Material material){
+	public void criar(Material material){
 		
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
 		
 		try{
 			stmt = connection.prepareStatement("INSERT INTO Material (codMat, descricao)VALUES(?,?)");
-			stmt.setInt(1, material.getCodMat());
+			stmt.setString(1, material.getCodMat());
 			stmt.setString(2, material.getDescricao());
 			
 			stmt.executeUpdate();
@@ -40,7 +41,7 @@ public class MaterialDAO {
 		
 	}
 	
-	public List<Material> listarMateriais(){
+	public List<Material> listar(){
 		
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
@@ -56,14 +57,14 @@ public class MaterialDAO {
 			while (resultSet.next()){
 				
 				Material material = new Material();
-				material.setCodMat(resultSet.getInt("codMat"));
+				material.setCodMat(resultSet.getString("codMat"));
 				material.setDescricao(resultSet.getString("descricao"));
 				
 				materiais.add(material);
 			 }
 			
 		}catch (SQLException ex){
-			Logger.getLogger(MaterialDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+			JOptionPane.showMessageDialog(null, "Erro ao listar - "+ex);
 		}finally{
 			ConnectionFactory.closeConnection(connection, stmt, resultSet);
 		}
@@ -71,21 +72,22 @@ public class MaterialDAO {
 		return materiais;
 		
 	}
+
 	
-	
-	public void update(Material material){
+	public void atualizar(Material material){
 		
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
 		
 		try{
-			stmt = connection.prepareStatement("UPDATE Material SET codMat = ?, descricao = ? WHERE id = ?");
-			stmt.setInt(1, material.getCodMat());
+			stmt = connection.prepareStatement("UPDATE material SET codMat = ?, descricao = ? WHERE codMat = ?");
+			stmt.setString(1, material.getCodMat());
 			stmt.setString(2, material.getDescricao());
+			stmt.setString(3, material.getCodMat());
 			
 			stmt.executeUpdate();
 			
-			JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso");
+			JOptionPane.showMessageDialog(null, "Material atualizado com sucesso");
 			
 		}catch (SQLException ex){
 			JOptionPane.showMessageDialog(null, "Erro ao atualizar - "+ex);
@@ -95,4 +97,55 @@ public class MaterialDAO {
 		}
 		
 	}
+	
+
+	
+public void excluir(Material material){
+		
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		
+		try{
+			stmt = connection.prepareStatement("DELETE FROM material WHERE codMat = ?");
+			stmt.setString(1, material.getCodMat());
+						
+			stmt.executeUpdate();
+			
+			JOptionPane.showMessageDialog(null, "Material deletado com sucesso");
+			
+		}catch (SQLException ex){
+			JOptionPane.showMessageDialog(null, "Erro ao excluir - "+ex);
+			
+		}finally{
+			ConnectionFactory.closeConnection(connection, stmt);
+		}
+		
+	}
+
+	public Material pesquisarPorCod(String cod){
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		String consulta = "SELECT * FROM material WHERE codMat = ?";
+		String consultaCompleta = consulta.concat(cod);
+		try{	
+			stmt = connection.prepareStatement(consultaCompleta);
+			resultSet = stmt.executeQuery();
+			while (resultSet.next()){
+				Material material = new Material();
+				material.setCodMat(resultSet.getString("codMat"));
+				material.setDescricao(resultSet.getString("descricao"));
+				return material;
+			 }
+			
+		}catch (SQLException ex){
+			JOptionPane.showMessageDialog(null, "Erro ao buscar material pelo código - "+ ex);
+		}
+		finally{
+			ConnectionFactory.closeConnection(connection, stmt, resultSet);
+		}
+		return null;
+	}
+	
+	
 }

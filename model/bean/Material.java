@@ -2,13 +2,13 @@ package model.bean;
 
 public class Material {
 	
-	private int codMat; //Primary key
+	private String codMat; //Primary key
 	private String descricao; //varchar100
 	
-	public int getCodMat() {
+	public String getCodMat() {
 		return codMat;
 	}
-	public void setCodMat(int codMat) {
+	public void setCodMat(String codMat) {
 		this.codMat = codMat;
 	}
 	public String getDescricao() {
