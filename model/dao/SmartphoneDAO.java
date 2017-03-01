@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import com.sun.istack.internal.logging.Logger;
 
+import model.bean.Cliente;
 import model.bean.Smartphone;
 import connection.ConnectionFactory;
 
@@ -128,6 +129,42 @@ public class SmartphoneDAO {
 			ConnectionFactory.closeConnection(connection, stmt);
 		}
 		
+	}
+	
+	public Smartphone pesquisarPorCodigo(String codCelular){
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		//String consulta = "SELECT * FROM celular.smartphone WHERE smartphone.codCelular = ?";
+		//String consultaCompleta = consulta.concat(codCelular);
+		try{	
+			stmt = connection.prepareStatement("SELECT * FROM celular.smartphone WHERE smartphone.codCelular = ?");
+			stmt.setString(1, codCelular);
+			resultSet = stmt.executeQuery();
+			
+			
+			while (resultSet.next()){
+				
+				Smartphone smartphone = new Smartphone();
+				smartphone.setCodCelular(resultSet.getString("codCelular"));
+				smartphone.setNumSerie(resultSet.getString("numSerie"));
+				smartphone.setMarca(resultSet.getString("marca"));
+				smartphone.setModelo(resultSet.getString("modelo"));
+				smartphone.setCor(resultSet.getString("cor"));
+				smartphone.setCpf(resultSet.getString("cpf"));
+				
+				return smartphone;
+				
+			 }
+			
+		}catch (SQLException ex){
+			ex.printStackTrace();
+			//JOptionPane.showMessageDialog(null, "Erro ao buscar celular pelo código - "+ ex);
+		}
+		finally{
+			ConnectionFactory.closeConnection(connection, stmt, resultSet);
+		}
+		return null;
 	}
 
 

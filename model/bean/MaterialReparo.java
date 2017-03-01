@@ -5,16 +5,16 @@ import java.sql.Date;
 
 public class MaterialReparo {
 	
-	private int codCelular; //not null references Reparo(codCelular)
+	private String codCelular; //not null references Reparo(codCelular)
 	private Date dataExecutada; //not null references Reparo(dataExecutada)
-	private int codMat; //Primary key references Material(codMat)
+	private String codMat; //Primary key references Material(codMat)
 	private int quantidade;
 
 	
-	public int getCodCelular() {
+	public String getCodCelular() {
 		return codCelular;
 	}
-	public void setCodCelular(int codCelular) {
+	public void setCodCelular(String codCelular) {
 		this.codCelular = codCelular;
 	}
 
@@ -25,10 +25,10 @@ public class MaterialReparo {
 		this.dataExecutada = dataExecutada;
 	}
 	
-	public int getCodMat() {
+	public String getCodMat() {
 		return codMat;
 	}
-	public void setCodMat(int codMat) {
+	public void setCodMat(String codMat) {
 		this.codMat = codMat;
 	}
 	

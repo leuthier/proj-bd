@@ -79,23 +79,24 @@ public class MaterialDAO {
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
 		
-		try{
-			stmt = connection.prepareStatement("UPDATE material SET codMat = ?, descricao = ? WHERE codMat = ?");
-			stmt.setString(1, material.getCodMat());
-			stmt.setString(2, material.getDescricao());
-			stmt.setString(3, material.getCodMat());
-			
-			stmt.executeUpdate();
-			
-			JOptionPane.showMessageDialog(null, "Material atualizado com sucesso");
-			
-		}catch (SQLException ex){
-			JOptionPane.showMessageDialog(null, "Erro ao atualizar - "+ex);
-			
-		}finally{
-			ConnectionFactory.closeConnection(connection, stmt);
+		if(pesquisarPorCod(material.getCodMat()) != null){
+			try{
+				stmt = connection.prepareStatement("UPDATE material SET descricao = ? WHERE codMat = ?");
+				stmt.setString(2, material.getDescricao());
+				stmt.setString(3, material.getCodMat());
+				
+				stmt.executeUpdate();
+				
+				JOptionPane.showMessageDialog(null, "Material atualizado com sucesso");
+				
+			}catch (SQLException ex){
+				JOptionPane.showMessageDialog(null, "Erro ao atualizar - "+ex);
+				
+			}
+		}else{
+			JOptionPane.showMessageDialog(null, "Material não existente.");
 		}
-		
+		ConnectionFactory.closeConnection(connection, stmt);
 	}
 	
 
@@ -126,7 +127,7 @@ public void excluir(Material material){
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
 		ResultSet resultSet = null;
-		String consulta = "SELECT * FROM material WHERE codMat = ?";
+		String consulta = "SELECT * FROM celular.material WHERE material.codMat = ?";
 		String consultaCompleta = consulta.concat(cod);
 		try{	
 			stmt = connection.prepareStatement(consultaCompleta);
@@ -140,6 +141,7 @@ public void excluir(Material material){
 			
 		}catch (SQLException ex){
 			JOptionPane.showMessageDialog(null, "Erro ao buscar material pelo código - "+ ex);
+			return null;
 		}
 		finally{
 			ConnectionFactory.closeConnection(connection, stmt, resultSet);

@@ -7,7 +7,7 @@ public class Reparo {
 	private Date dataExecutada; //Primary key
     //codCelular not null - SMARTPHONE NAO DEVERIA SER PARAMETRO?
 	private Date dataUltimoConserto;
-	private int codCelular;
+	private String codCelular;
 	//Foreign Key (codCelular) references Smartphone(codCelular)
 	
 	public Date getDataExecutada() {
@@ -17,10 +17,10 @@ public class Reparo {
 		this.dataExecutada = dataExecutada;
 	}
 	
-	public int getCodCelular(){
+	public String getCodCelular(){
 		return codCelular;
 	}
-	public void setCodCelular(int codCelular) {
+	public void setCodCelular(String codCelular) {
 		this.codCelular = codCelular;
 	}
 	

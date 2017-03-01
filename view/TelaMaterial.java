@@ -273,7 +273,7 @@ public class TelaMaterial extends javax.swing.JFrame {
 		   }else{
 				return false;
 		   }	
-	   }
+	}
     
     public void readJTable(){
     	DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
