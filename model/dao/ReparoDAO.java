@@ -19,13 +19,14 @@ public class ReparoDAO {
 	
 	
 	public void criar(Reparo reparo){
-			Reparo reparoCadastrado = pesquisar(reparo.getCodCelular(), reparo.getDataExecutada());
+			Reparo reparoCadastrado = pesquisar(reparo.getCodCelular());
 			if(reparoCadastrado == null){
 				inserir(reparo);
 			}else{
 				reparoCadastrado.setDataUltimoConserto(reparoCadastrado.getDataExecutada());
 				reparoCadastrado.setDataExecutada(reparo.getDataExecutada());
 				inserir(reparoCadastrado);
+				//excluir(reparo);
 			}
 		
 	}
@@ -109,7 +110,7 @@ public class ReparoDAO {
 		
 	}
 	
-	public void excluir(Reparo reparo, Date data){
+	public void excluir(Reparo reparo){
 		
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
@@ -117,7 +118,7 @@ public class ReparoDAO {
 		try{
 			stmt = connection.prepareStatement("DELETE FROM reparo WHERE codCelular = ? and dataExecutada = ?");
 			stmt.setString(1, reparo.getCodCelular());
-			stmt.setDate(2, data);
+			stmt.setDate(2, reparo.getDataExecutada());
 						
 			stmt.executeUpdate();
 			
@@ -132,14 +133,13 @@ public class ReparoDAO {
 	}
 	
 	
-	public Reparo pesquisar(String cod, Date data){
+	public Reparo pesquisar(String cod){
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
 		ResultSet resultSet = null;
 		try{	
-			stmt = connection.prepareStatement("SELECT * FROM celular.reparo WHERE reparo.codCelular = ? and reparo.dataExecutada = ?");
+			stmt = connection.prepareStatement("SELECT * FROM celular.reparo WHERE reparo.codCelular = ?");
 			stmt.setString(1, cod);
-			stmt.setDate(2, data);
 			resultSet = stmt.executeQuery();
 			
 			

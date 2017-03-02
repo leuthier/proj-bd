@@ -7,7 +7,9 @@ import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JTextFieldDateEditor;
 
+import model.bean.Material;
 import model.bean.Reparo;
+import model.dao.MaterialDAO;
 import model.dao.ReparoDAO;
 import model.dao.SmartphoneDAO;
 
@@ -182,8 +184,7 @@ public class TelaReparo extends javax.swing.JFrame {
 			SmartphoneDAO smartphoneDAO = new SmartphoneDAO();
 			
 			if (smartphoneDAO.pesquisarPorCodigo(reparo.getCodCelular()) != null){
-				reparoDAO.criar(reparo);
-				JOptionPane.showMessageDialog(null,"Reparo cadastrado com sucesso","Erro",JOptionPane.INFORMATION_MESSAGE);		
+				reparoDAO.criar(reparo);	
 				txtCodigo.setText(null);
 				editor.setText(null);
 			}else{
@@ -198,7 +199,27 @@ public class TelaReparo extends javax.swing.JFrame {
    }                                         
 
    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {                                           
-       // TODO add your handling code here:
+	   if(tabelaReparo.getSelectedRow() != -1){
+		   Reparo reparo = new Reparo();
+		   ReparoDAO reparoDAO = new ReparoDAO();
+		   
+		   reparo.setCodCelular(txtCodigo.getText());
+		   try {
+			    java.util.Date parsed = sdf.parse(editor.getText());
+		        Date sql = new Date(parsed.getTime());
+				reparo.setDataExecutada(sql);
+		   } catch (Exception e) {
+				JOptionPane.showMessageDialog(null,"Data no formato incorreto","Erro",JOptionPane.ERROR_MESSAGE);
+				return;
+		   }
+		   reparoDAO.excluir(reparo);
+		   txtCodigo.setText(null);
+		   editor.setText(null);
+		   readJTable();
+
+   	}else{
+   		JOptionPane.showMessageDialog(null, "Selecione um material para excluir.");
+   	}
    }
    
    private void tabelaReparoMouseClicked(java.awt.event.MouseEvent evt) {                                     
@@ -273,11 +294,12 @@ public class TelaReparo extends javax.swing.JFrame {
    	
    	try {
 		for(Reparo m: reparoDao.listar()){
-			modelo.addRow(new Object[]{
-		  				m.getCodCelular(),
-					sdf.format(m.getDataExecutada()),
-					sdf.format(m.getDataUltimoConserto())
-			});
+			
+			if (m.getDataUltimoConserto() != null){
+				modelo.addRow(new Object[]{m.getCodCelular(),
+					sdf.format(m.getDataExecutada()),sdf.format(m.getDataUltimoConserto())});
+			}else{
+			modelo.addRow(new Object[]{m.getCodCelular(), sdf.format(m.getDataExecutada())});}
 			
 		}
 	} catch (Exception e) {
