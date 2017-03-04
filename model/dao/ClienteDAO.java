@@ -128,10 +128,10 @@ public class ClienteDAO {
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
 		ResultSet resultSet = null;
-		String consulta = "SELECT * FROM celular.cliente WHERE cliente.cpf = ?";
-		String consultaCompleta = consulta.concat(cpf);
+		String consulta = "SELECT * FROM celular.cliente WHERE cliente.cpf = ";
+		//String consultaCompleta = consulta.concat(cpf);
 		try{	
-			stmt = connection.prepareStatement(consultaCompleta);
+			stmt = connection.prepareStatement(consulta+cpf);
 			resultSet = stmt.executeQuery();
 			
 			
