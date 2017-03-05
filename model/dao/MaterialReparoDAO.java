@@ -97,10 +97,10 @@ public class MaterialReparoDAO {
 		
 		try{
 			stmt = connection.prepareStatement("UPDATE material_reparo SET quantidade = ? WHERE codCelular = ? and dataExecutada = ? and codMat = ?");
-			stmt.setInt(4, materialReparo.getQuantidade());
-			stmt.setString(1, materialReparo.getCodCelular());
-			stmt.setDate(2, materialReparo.getDataExecutada());
-			stmt.setString(3, materialReparo.getCodMat());
+			stmt.setInt(1, materialReparo.getQuantidade());
+			stmt.setString(2, materialReparo.getCodCelular());
+			stmt.setDate(3, materialReparo.getDataExecutada());
+			stmt.setString(4, materialReparo.getCodMat());
 						
 			stmt.executeUpdate();
 			

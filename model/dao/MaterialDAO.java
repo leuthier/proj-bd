@@ -82,8 +82,8 @@ public class MaterialDAO {
 		if(pesquisarPorCod(material.getCodMat()) != null){
 			try{
 				stmt = connection.prepareStatement("UPDATE material SET descricao = ? WHERE codMat = ?");
-				stmt.setString(2, material.getDescricao());
-				stmt.setString(3, material.getCodMat());
+				stmt.setString(1, material.getDescricao());
+				stmt.setString(2, material.getCodMat());
 				
 				stmt.executeUpdate();
 				
@@ -127,11 +127,12 @@ public void excluir(Material material){
 		Connection connection = ConnectionFactory.getConnection();
 		java.sql.PreparedStatement stmt = null;
 		ResultSet resultSet = null;
-		String consulta = "SELECT * FROM celular.material WHERE material.codMat = ?";
-		String consultaCompleta = consulta.concat(cod);
+				
 		try{	
-			stmt = connection.prepareStatement(consultaCompleta);
+			stmt = connection.prepareStatement("SELECT * FROM celular.material WHERE material.codMat = ?");
+			stmt.setString(1, cod);
 			resultSet = stmt.executeQuery();
+			
 			while (resultSet.next()){
 				Material material = new Material();
 				material.setCodMat(resultSet.getString("codMat"));

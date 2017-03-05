@@ -371,7 +371,7 @@ public class TelaSmartphone extends javax.swing.JFrame {
 				txtCpfCadastro.setText(null);
 			
 		}else{
-			JOptionPane.showMessageDialog(null,"- Codigo celular deve conter 10 digitos\n- Numero de serie deve conter 11 digitos\n- Marca deve ter pelo menos 3 caracteres\n- Modelo deve conter ate 30 caracteres"
+			JOptionPane.showMessageDialog(null,"- Codigo celular deve conter 11 digitos\n- Numero de serie deve conter 11 digitos\n- Marca deve ter pelo menos 3 caracteres\n- Modelo deve conter ate 30 caracteres"
 					+ "\n- CPF deve conter 11 caracteres","Aviso",JOptionPane.ERROR_MESSAGE);
 			return;
     	}
@@ -443,8 +443,8 @@ public class TelaSmartphone extends javax.swing.JFrame {
 	   
 	   private boolean tamanhoOk(String codCelular, String numSerie, String modelo, String marca, String cor){		   			  
 		  if (codCelular != null && numSerie != null && modelo != null && marca != null && cor != null){
-			   if (       ( (codCelular.length()) == 10)
-					   && ( (numSerie.length()) == 10) 
+			   if (       ( (codCelular.length()) == 11)
+					   && ( (numSerie.length()) == 11) 
 					   && ( (modelo.length())  < 30 )
 					   && ( (modelo.length())  > 1 )
 					   && ( (marca.length())   >= 3 )

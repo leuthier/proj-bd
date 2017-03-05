@@ -82,12 +82,11 @@ public class ClienteDAO {
 		java.sql.PreparedStatement stmt = null;
 		
 		try{
-			stmt = connection.prepareStatement("UPDATE cliente SET cpf = ?, telefone = ?, nomeCli = ?, email = ? WHERE cpf = ?");
-			stmt.setString(1, cliente.getCpf());
-			stmt.setString(2, cliente.getTelefone());
-			stmt.setString(3, cliente.getNomeCli());
-			stmt.setString(4, cliente.getEmail());
-			stmt.setString(5, cliente.getCpf());
+			stmt = connection.prepareStatement("UPDATE cliente SET telefone = ?, nomeCli = ?, email = ? WHERE cpf = ?");
+			stmt.setString(1, cliente.getTelefone());
+			stmt.setString(2, cliente.getNomeCli());
+			stmt.setString(3, cliente.getEmail());
+			stmt.setString(4, cliente.getCpf());
 			
 			stmt.executeUpdate();
 			

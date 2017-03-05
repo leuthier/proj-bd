@@ -207,8 +207,7 @@ public class TelaCliente extends javax.swing.JFrame {
     }                                        
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    	if(jTable1.getSelectedRow() != -1){
-    		Cliente cliente = new Cliente();
+       		Cliente cliente = new Cliente();
         	ClienteDAO clienteDao = new ClienteDAO();
         	
         	String strCpf = txtCpf.getText();
@@ -257,7 +256,6 @@ public class TelaCliente extends javax.swing.JFrame {
     			return;
     		}
         	readJTable();
-    	}
     }
     
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {                                        	

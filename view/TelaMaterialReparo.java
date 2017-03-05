@@ -411,8 +411,7 @@ public class TelaMaterialReparo extends javax.swing.JFrame {
        	try {
     		for(MaterialReparo mr: materialReparoDAO.listar()){
     			modelo.addRow(new Object[]{mr.getCodCelular(),
-    					sdf.format(mr.getDataExecutada()),(mr.getCodMat()),
-    					mr.getCodMat(), mr.getQuantidade()
+    					sdf.format(mr.getDataExecutada()),(mr.getCodMat()), mr.getQuantidade()
     							});
     		}
     	} catch (Exception e) {
