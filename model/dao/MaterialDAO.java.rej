@@ -1,9 +1,0 @@
-diff a/model/dao/MaterialDAO.java b/model/dao/MaterialDAO.java	(rejected hunks)
-@@ -140,6 +140,7 @@
- 			
- 		}catch (SQLException ex){
- 			JOptionPane.showMessageDialog(null, "Erro ao buscar material pelo c�digo - "+ ex);
-+			return null;
- 		}
- 		finally{
- 			ConnectionFactory.closeConnection(connection, stmt, resultSet);

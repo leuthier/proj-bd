@@ -161,4 +161,34 @@ public class ReparoDAO {
 		}
 		return null;
 	}
+	
+	public Reparo pesquisar(String cod, Date data){
+		Connection connection = ConnectionFactory.getConnection();
+		java.sql.PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		try{	
+			stmt = connection.prepareStatement("SELECT * FROM celular.reparo WHERE reparo.codCelular = ? and reparo.dataExecutada = ?");
+			stmt.setString(1, cod);
+			stmt.setDate(2, data);
+			resultSet = stmt.executeQuery();
+			
+			
+			while (resultSet.next()){
+				
+				Reparo reparo = new Reparo();
+				reparo.setCodCelular(resultSet.getString("codCelular"));
+				reparo.setDataExecutada(resultSet.getDate("dataExecutada"));
+				reparo.setDataUltimoConserto(resultSet.getDate("dataUltimoConserto"));
+				return reparo;
+				
+			 }
+			
+		}catch (SQLException ex){
+			JOptionPane.showMessageDialog(null, "Erro ao buscar cliente por CPF - "+ ex);
+		}
+		finally{
+			ConnectionFactory.closeConnection(connection, stmt, resultSet);
+		}
+		return null;
+	}
 }

@@ -162,37 +162,41 @@ public class TelaReparo extends javax.swing.JFrame {
    	
    		String codCelular = txtCodigo.getText();
 		String data = editor.getText();
-		
-		if (tamanhoOk(codCelular)){
-			
-			if(codCelular.matches("^[0-9]*$")){
-				reparo.setCodCelular(codCelular);;
+		if(!temCamposVazios(codCelular, data)){
+			if (tamanhoOk(codCelular)){
+				
+				if(codCelular.matches("^[0-9]*$")){
+					reparo.setCodCelular(codCelular);;
+				}else{
+					JOptionPane.showMessageDialog(null,"Código inválido - Deve conter apenas números","Erro",JOptionPane.ERROR_MESSAGE);
+					return;}
+				
+				try {
+					java.util.Date parsed = sdf.parse(data);
+			        Date sql = new Date(parsed.getTime());
+					reparo.setDataExecutada(sql);
+				} catch (ParseException e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Data no formato incorreto","Erro",JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				SmartphoneDAO smartphoneDAO = new SmartphoneDAO();
+				
+				if (smartphoneDAO.pesquisarPorCodigo(reparo.getCodCelular()) != null){
+					reparoDAO.criar(reparo);	
+					txtCodigo.setText(null);
+					editor.setText(null);
+				}else{
+					JOptionPane.showMessageDialog(null,"Código do celular nao encontrado","Erro",JOptionPane.ERROR_MESSAGE);
+					return;
+				}	
 			}else{
-				JOptionPane.showMessageDialog(null,"Código inválido - Deve conter apenas números","Erro",JOptionPane.ERROR_MESSAGE);
-				return;}
-			
-			try {
-				java.util.Date parsed = sdf.parse(data);
-		        Date sql = new Date(parsed.getTime());
-				reparo.setDataExecutada(sql);
-			} catch (ParseException e) {
-				e.printStackTrace();
-				JOptionPane.showMessageDialog(null,"Data no formato incorreto","Erro",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,"- Código deve conter 11 digitos","Erro",JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			
-			SmartphoneDAO smartphoneDAO = new SmartphoneDAO();
-			
-			if (smartphoneDAO.pesquisarPorCodigo(reparo.getCodCelular()) != null){
-				reparoDAO.criar(reparo);	
-				txtCodigo.setText(null);
-				editor.setText(null);
-			}else{
-				JOptionPane.showMessageDialog(null,"Código do celular nao encontrado","Erro",JOptionPane.ERROR_MESSAGE);
-				return;
-			}	
 		}else{
-			JOptionPane.showMessageDialog(null,"- Código deve conter 11 digitos","Erro",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"- Os campos não podem estar vazios","Erro",JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		readJTable();
@@ -217,9 +221,9 @@ public class TelaReparo extends javax.swing.JFrame {
 		   editor.setText(null);
 		   readJTable();
 
-   	}else{
-   		JOptionPane.showMessageDialog(null, "Selecione um material para excluir.");
-   	}
+	   }else{
+		   JOptionPane.showMessageDialog(null, "Selecione um material para excluir.");
+   	   }
    }
    
    private void tabelaReparoMouseClicked(java.awt.event.MouseEvent evt) {                                     
@@ -271,6 +275,13 @@ public class TelaReparo extends javax.swing.JFrame {
 	   }else{
 			return false;
 	   }	
+   }
+   
+   private boolean temCamposVazios(String codigo, String data){
+	   if (codigo.length() == 0 || data.length() == 0){
+		   return true;
+	   }
+	   return false;
    }
    
    public static Date formataData(String data) throws Exception { 
