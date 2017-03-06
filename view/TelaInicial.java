@@ -6,12 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import connection.InicializarBanco;
+
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -32,6 +36,13 @@ public class TelaInicial extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				try{
+					InicializarBanco bd = new InicializarBanco();
+				}catch(SQLException se){
+					JOptionPane.showMessageDialog(null,"Houve um erro ao inicializar o banco","Erro",JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
 				try {
 					TelaInicial frame = new TelaInicial();
 					frame.setVisible(true);
