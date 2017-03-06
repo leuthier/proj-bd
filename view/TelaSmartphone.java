@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.GroupLayout.Alignment;
@@ -12,7 +13,10 @@ import model.bean.Cliente;
 import model.bean.Smartphone;
 import model.dao.ClienteDAO;
 import model.dao.SmartphoneDAO;
+
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 /**
@@ -66,7 +70,12 @@ public class TelaSmartphone extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //quando clicar no fechar - close
+        addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e) {
+				TelaSmartphone.this.dispose();
+			}
+		});
         setTitle("Smartphones");
         setBackground(new java.awt.Color(255, 255, 255));
 

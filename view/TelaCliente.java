@@ -6,6 +6,8 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -57,7 +59,13 @@ public class TelaCliente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //quando clicar no fechar - close
+        addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e) {
+				TelaCliente.this.dispose();
+			}
+		});
+        
         setTitle("Clientes");
         setBackground(new java.awt.Color(255, 255, 255));
 

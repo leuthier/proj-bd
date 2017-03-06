@@ -2,6 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -46,7 +48,12 @@ public class TelaMaterial extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //quando clicar no fechar - close
+        addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e) {
+				TelaMaterial.this.dispose();
+			}
+		});
         setTitle("Materiais");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -340,5 +347,18 @@ public class TelaMaterial extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtCodMaterial;
     private javax.swing.JTextField txtDescricao;
-    // End of variables declaration      
+    // End of variables declaration 
+    
+    public void abrirTelaMaterial() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaMaterial frame = new TelaMaterial();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 }

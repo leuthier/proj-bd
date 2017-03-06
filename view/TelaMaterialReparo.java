@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -59,7 +62,12 @@ public class TelaMaterialReparo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaMaterialReparo = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //quando clicar no fechar - close
+        addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e) {
+				TelaMaterialReparo.this.dispose();
+			}
+		});
         setTitle("Adicionar materiais a um reparo");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -465,4 +473,18 @@ public class TelaMaterialReparo extends javax.swing.JFrame {
     private javax.swing.JTextField txtQuantidade;
     private javax.swing.JTable tabelaMaterialReparo;
     // End of variables declaration                   
+
+	  public void abrirTelaMaterialReparo() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaMaterialReparo frame = new TelaMaterialReparo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	  
 }

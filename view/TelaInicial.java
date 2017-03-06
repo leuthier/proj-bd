@@ -22,8 +22,8 @@ public class TelaInicial extends JFrame {
 	
 	private JPanel contentPane;
 	private JButton btnSmartphone;
-	private JButton btnRemover;
-	private JButton btnAlterar;
+	private JButton btnReparo;
+	private JButton btnMaterial;
 
 	/**
 	 * Launch the application.
@@ -61,7 +61,7 @@ public class TelaInicial extends JFrame {
 				telaCliente.abrirTelaCliente();
 			}
 		});
-		btnClientes.setBounds(73, 92, 299, 23);
+		btnClientes.setBounds(73, 93, 299, 23);
 		contentPane.add(btnClientes);
 		
 		JLabel lblAlunos = new JLabel("Projeto Fundamento de Banco de Dados - 2016.2");
@@ -79,23 +79,42 @@ public class TelaInicial extends JFrame {
 		btnSmartphone.setBounds(73, 124, 299, 23);
 		contentPane.add(btnSmartphone);
 		
-		btnRemover = new JButton("Reparo");
-		btnRemover.addActionListener(new ActionListener() {
+		btnReparo = new JButton("Reparo");
+		btnReparo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaReparo telaReparo = new TelaReparo();
+				telaReparo.abrirTelaReparo();
 			}
 		});
-		btnRemover.setBounds(73, 187, 299, 23);
-		contentPane.add(btnRemover);
+		btnReparo.setBounds(73, 183, 299, 23);
+		contentPane.add(btnReparo);
 		
-		btnAlterar = new JButton("Material");
-		btnAlterar.setBounds(73, 153, 299, 23);
-		contentPane.add(btnAlterar);
+		btnMaterial = new JButton("Material");
+		btnMaterial.setBounds(73, 153, 299, 23);
+		btnMaterial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaMaterial telaMaterial = new TelaMaterial();
+				telaMaterial.abrirTelaMaterial();
+			}
+		});
+		contentPane.add(btnMaterial);
+		
+		JButton btnMaterialReparo = new JButton("Material / Reparo");
+		btnMaterialReparo.setToolTipText("Material que foi usado em algum reparo");
+		btnMaterialReparo.setBounds(73, 212, 299, 23);
+		btnMaterialReparo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaMaterialReparo telaMaterialReparo = new TelaMaterialReparo();
+				telaMaterialReparo.abrirTelaMaterialReparo();
+			}
+		});
+		contentPane.add(btnMaterialReparo);
 				
 		addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e) {
 				Object[] options = { "Sim", "Não" };
 				int i = JOptionPane.showOptionDialog(null,
-						"Tem certeza que deseja sair?", "Saída",
+						"Tem certeza que deseja sair?", "Atencao",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 						options, options[0]);
 				if (i == JOptionPane.YES_OPTION) {
@@ -119,6 +138,4 @@ public class TelaInicial extends JFrame {
 		});
 		
 	}	
-	
-	
 }

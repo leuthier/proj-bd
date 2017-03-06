@@ -14,6 +14,9 @@ import model.dao.ReparoDAO;
 import model.dao.SmartphoneDAO;
 
 import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -56,7 +59,13 @@ public class TelaReparo extends javax.swing.JFrame {
        btnSalvar = new javax.swing.JButton();
        btnExcluir = new javax.swing.JButton();
 
-       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+       //quando clicar no fechar - close
+       addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e) {
+				TelaReparo.this.dispose();
+			}
+		});
+       
        setTitle("Reparo");
        setBackground(new java.awt.Color(255, 255, 255));
 
@@ -330,5 +339,19 @@ public class TelaReparo extends javax.swing.JFrame {
    private javax.swing.JScrollPane jScrollPane2;
    private javax.swing.JTable tabelaReparo;
    private javax.swing.JTextField txtCodigo;
-   // End of variables declaration                   
+   // End of variables declaration              
+   
+   public void abrirTelaReparo() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaReparo frame = new TelaReparo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+   
 }
