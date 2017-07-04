@@ -23,5 +23,5 @@ O nosso projeto está preparado para inicializar o schema sem a necessidade de "
 
 Após as devidas configurações, execute a "TelaInicial.java" e tenha acesso à todas as funcionalidades.
 
-Dúvidas? [victor.leuthier@ufrpe.br] (mailto:victor.leuthier@ufrpe.br)<br>
+Dúvidas? victor.leuthier@ufrpe.br<br>
 Bugs? Por favor, [envie o bug](https://github.com/leuthier/proj-bd/issues/new)
